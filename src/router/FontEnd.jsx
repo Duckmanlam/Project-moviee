@@ -7,7 +7,7 @@ import {
   Data,
   Success,
   EditProfile,
-  Test,
+  
   Upload,
   Dowload,
   TopRated,
