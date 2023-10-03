@@ -28,33 +28,48 @@ export default function Login() {
 
   return (
     <div>
-      <div className="h-screen flex">
-        <div className="w-1/2 bg-Primary from-blue-80">
-          <div></div>
-        </div>
-        <div className="relative flex-1 ml-auto mr-auto justify-center items-center bg-white">
-          <form
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/2 p-4 text-center"
-            onSubmit={handleSubmit}
-          >
-            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              Cinemax
-            </span>
-            <h1 className="text-gray-800 font-bold text-2xl mb-1">
-              Hello Again!
-            </h1>
-            <p className="text-sm font-normal text-gray-600 mb-7">
-              Welcome Back
-            </p>
-            <div className="mb-4 text-left">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="email"
-              >
-                Email Address
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+      <div className="flex">
+        <div className="w-1/2 h-screen bg-Primary relative">test</div>
+        <div className="w-1/2 text-center bg-black">
+          <div className="mx-36 mt-8 m-auto">
+            <p className="text-20-700  text-Grayscale10"> Cinemax</p>
+            <div className="mt-12">
+              <p className="text-32-700 text-Grayscale10 ">
+                {" "}
+                Hey there,<br></br>welcome back
+              </p>
+              <div className="px-6 sm:px-0  pt-10 m-auto">
+                <button
+                  type="button"
+                  className="text-white w-full bg-LineDark font-medium text-sm px-5 py-2.5 text-center inline-flex items-center justify-center mr-2 mb-2 rounded-3xl "
+                >
+                  <img
+                    src=""
+                    className="mr-2 -ml-1 w-4 h-4"
+                    aria-hidden="true"
+                    alt="Google Icon"
+                  />
+                  Login with Google
+                </button>
+              </div>
+
+              <div className="flex items-center justify-center mt-6">
+                <div className="border-t border-Grayscale60 flex-grow"></div>
+                <p className="text-Grayscale70 text-14-500 mx-2">
+                  Or login with
+                </p>
+                <div className="border-t border-Grayscale60 flex-grow"></div>
+              </div>
+
+              <div className="text-left mt-6">
+                <label
+                  
+                  className="text-14-500 block  text-gray-600 "
+                >
+                  Full Name
+                </label>
+                <input
+                className="mt-2 w-full h-12  text-14-500 px-4 py-2  bg-DarkSmooth  outline-none rounded-3xl border-Grayscale60 text-Grayscale70"
                 id="email"
                 name="email"
                 type="text"
@@ -62,16 +77,15 @@ export default function Login() {
                 value={auth.email}
                 onChange={handleChange}
               />
-            </div>
-            <div className="mb-6 text-left">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+              </div>
+              <div className="text-left mt-5 ">
+                <label
+                  className="text-14-500 block  text-gray-600 "
+                >
+                  Password
+                </label>
+                <input
+                className="mt-2 w-full h-12  text-14-500 px-4 py-2  bg-DarkSmooth  outline-none rounded-3xl border-Grayscale60 text-Grayscale70"
                 id="password"
                 name="password"
                 type="password"
@@ -79,17 +93,26 @@ export default function Login() {
                 value={auth.password}
                 onChange={handleChange}
               />
+              </div>
+              <div>
+                {/* forgot password */}
+                <p className="text-14-400 text-Primary text-right mt-2">
+                  Forgot Password
+                </p>
+              </div>
+              <div className="mt-6">
+                <button className="bg-Primary text-white font-bold w-full rounded-3xl py-3  " onClick={handleSubmit}>
+                  Login
+                </button>
+              </div>
+              <div>
+                <p className="text-14-400 text-Grayscale60 mt-6">
+                  Dont have an account?{" "}
+                  <span className="text-14-700 text-Primary">Register</span>
+                </p>
+              </div>
             </div>
-            <button
-              type="submit"
-              className="block w-full bg-indigo-600 mt-4 py-2 rounded text-white font-semibold mb-2"
-            >
-              Login
-            </button>
-            <div className="text-sm ml-2 hover:text-blue-500 cursor-pointer text-right">
-              Forgot Password ?
-            </div>
-          </form>
+          </div>
         </div>
       </div>
     </div>
