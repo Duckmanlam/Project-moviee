@@ -16,7 +16,9 @@
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
+    "react-datepicker": "^4.18.0",
     "react-dom": "^18.2.0",
+    "react-dropzone": "^14.2.3",
     "react-feather": "^2.0.10",
     "react-modal": "^3.16.1",
     "react-player": "^2.12.0",
@@ -24,7 +26,8 @@
     "sort-by": "^0.0.2",
     "swiper": "^10.2.0",
     "tw-elements-react": "^1.0.0-alpha1",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "yarn": "^1.22.19"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.2.0",
