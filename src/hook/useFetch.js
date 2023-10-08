@@ -27,7 +27,7 @@ function reducer(state, { type, payload }) {
   }
 }
 
-function useFetch(url) {
+function  useFetch(url) {
   const [state, dispatch] = useReducer(reducer, initialState);
   useEffect(() => {
     dispatch({ type: ACTIONS.API_REQUEST });
