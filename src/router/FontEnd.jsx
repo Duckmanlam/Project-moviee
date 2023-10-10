@@ -14,6 +14,7 @@ import {
 } from "../page/frontend";
 import { LayoutMain, IndexLayout } from "../layout";
 import Login from "../page/auth/Login";
+import ChunkedUpload from "../page/frontend/test";
 
 export default function RouteFontEnd() {
   return (
@@ -33,6 +34,7 @@ export default function RouteFontEnd() {
         <Route path="/success" element={<Success />} />
         <Route path="/pay" element={<Payment />} />
         <Route path="/sub" element={<Sub />} />
+        <Route path="/test" element={<ChunkedUpload/>} /> 
       </Route>
     </Routes>
   );

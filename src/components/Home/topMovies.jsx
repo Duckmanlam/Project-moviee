@@ -84,7 +84,7 @@ export default function TopMovies() {
     <div>
       <h1 className="text-20-700 dark:text-Grayscale10">Top Movies</h1>
       {data.rating.map((movie, index) => (
-        <div key={index} className="mt-6">
+        <div key={index} className="mt-4">
           <div className="flex">
             <img
               className=""

@@ -4,7 +4,7 @@ import Topmovies from "../../components/Home/topMovies";
 
 export default function Homepage() {
   return (
-    <div className="ml-8 grid grid-cols-3 gap-4 mt-12">
+    <div className="ml-8 grid grid-cols-3 gap-4 mt-4 ">
       <div className="col-span-2  ">
         <div>
           <Banner />

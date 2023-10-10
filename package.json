@@ -22,9 +22,10 @@
     "react-feather": "^2.0.10",
     "react-modal": "^3.16.1",
     "react-player": "^2.12.0",
+    "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.14.2",
     "sort-by": "^0.0.2",
-    "swiper": "^10.2.0",
+    "swiper": "^10.3.1",
     "tw-elements-react": "^1.0.0-alpha1",
     "uuid": "^9.0.0",
     "yarn": "^1.22.19"
