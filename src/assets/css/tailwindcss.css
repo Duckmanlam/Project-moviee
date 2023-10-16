@@ -56,6 +56,9 @@
   .banner-image.active {
     @apply opacity-100;
   }
-  
+  .rotate-90 {
+  transform: rotate(90deg);
+}
+
 }
  

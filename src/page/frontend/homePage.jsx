@@ -1,6 +1,6 @@
 import Banner from "../../components/Home/banNer";
-import Continuewatching from "../../components/Home/continueWatching";
 import Topmovies from "../../components/Home/topMovies";
+import Trending from "../../components/Home/trending";
 
 export default function Homepage() {
   return (
@@ -11,7 +11,7 @@ export default function Homepage() {
           
         </div>
         <div className="mt-8">
-          <Continuewatching />
+<Trending/>
         </div>
       </div>
       <div className="col-span-1 ml-8 ">
