@@ -11,7 +11,7 @@ export default function Homepage() {
           
         </div>
         <div className="mt-4">
-<Trending/>
+         <Trending/>
         </div>
       </div>
       <div className="col-span-1 ml-8 ">
