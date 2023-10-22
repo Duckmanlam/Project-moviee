@@ -12,7 +12,6 @@
   "dependencies": {
     "@iconify-icons/iconoir": "^1.2.30",
     "@iconify/react": "^4.1.1",
-    "@material-ui/icons": "^4.11.3",
     "axios": "^1.4.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
