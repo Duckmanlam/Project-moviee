@@ -7,7 +7,7 @@ import {
   Data,
   Success,
   EditProfile,
-  
+  VideoPlayer,
   Upload,
   Dowload,
   TopRated,
@@ -20,13 +20,14 @@ export default function RouteFontEnd() {
   return (
     <Routes>
       <Route element={<LayoutMain />}>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/a" element={<TopRated />} />
+        <Route path="" element={<Homepage />} />
+        <Route path="/toprated" element={<TopRated />} />
         <Route path="/dowload" element={<Dowload />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/edit" element={<EditProfile />} />
         <Route path="/data" element={<Data />} />
         <Route path="/pass" element={<Password />} />
+        <Route path="/video" element={<VideoPlayer />} />
       </Route>
 
       <Route element={<IndexLayout />}>

@@ -9,7 +9,7 @@ import Dowload from "./Dowload";
 import Test from "./test";
 import TopRated from "./TopRated";
 import Upload from "./Upload";
-
+import VideoPlayer from "./videoPlayer";
 export {
   Homepage,
   Data,
@@ -22,4 +22,5 @@ export {
   Test,
   TopRated,
   Upload,
+  VideoPlayer,
 };

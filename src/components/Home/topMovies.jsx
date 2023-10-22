@@ -123,7 +123,7 @@ export default function TopMovies() {
           </div>
         </div>
       ))}
-      <button className=" mt-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent w-full rounded-full	">
+      <button className=" mt-5 bg-transparent hover:bg-Primary text-Primary font-semibold hover:text-white py-2 px-4 border border-Primary hover:border-transparent w-full rounded-full	">
   Xem thêm
 </button>
     </div>
