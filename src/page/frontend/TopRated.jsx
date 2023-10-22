@@ -107,7 +107,7 @@ const lists = [
 const MovieList = () => {
   return (
     <div> 
-      <p className="ml-8 mb-5 mt-8 text-24 font-bold">Top Rated</p>
+      <p className="ml-8 mb-5 mt-1 text-24 font-bold dark:text-white ">Top Rated</p>
       <div className="flex flex-wrap ">
         {movies.map((movie, index) => (
           <div key={index} className="m-4">
@@ -124,7 +124,7 @@ const MovieList = () => {
         ))}
       </div>
       <div>
-      <p className="ml-8 mt-7 mb-5 text-24 font-bold">Best of Action</p>
+      <p className="ml-8 mt-4 mb-5 text-24 font-bold dark:text-white">Best of Action</p>
         <div className="flex flex-wrap ">
           {lists.map((list, index) => (
             <div key={index} className="m-4">
