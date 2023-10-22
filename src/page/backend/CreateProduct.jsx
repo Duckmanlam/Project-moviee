@@ -168,7 +168,7 @@ export default function CreateProduct() {
       </div>
       <p className="text-20 mb-3 mt-6">Language</p>
       <select className="bg-white w-56 border border-black text-gray-900 text-sm rounded-lg block p-2.5  ">
-        <option selected>Choose a language</option>
+        <option selected>Choose a language</option> q
         <option value="US">English</option>
         <option value="VN">Việt Nam</option>
       </select>

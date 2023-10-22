@@ -84,8 +84,8 @@ export default function TopMovies() {
     <div>
       <h1 className="text-20-700 dark:text-Grayscale10">Top Movies</h1>
       {data.rating.map((movie, index) => (
-        <div key={index} className="mt-4">
-          <div className="flex">
+        <div key={index} className="mt-8">
+          <div className="flex ">
             <img
               className=""
               src={movie.posterImage}
@@ -123,6 +123,9 @@ export default function TopMovies() {
           </div>
         </div>
       ))}
+      <button className=" mt-5 bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent w-full rounded-full	">
+  Xem thêm
+</button>
     </div>
   );
 }

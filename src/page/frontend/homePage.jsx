@@ -10,7 +10,7 @@ export default function Homepage() {
           <Banner />
           
         </div>
-        <div className="mt-8">
+        <div className="mt-4">
 <Trending/>
         </div>
       </div>
