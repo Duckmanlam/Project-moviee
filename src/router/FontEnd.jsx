@@ -14,12 +14,13 @@ import {
 } from "../page/frontend";
 import { LayoutMain, IndexLayout } from "../layout";
 import Login from "../page/auth/Login";
+import Auth from "../page/auth/Register";
 
 export default function RouteFontEnd() {
   return (
     <Routes>
       <Route element={<LayoutMain />}>
-        <Route path="" element={<Homepage />} />
+        <Route path="/" element={<Homepage />} />
         <Route path="/toprated" element={<TopRated />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/edit" element={<EditProfile />} />
@@ -28,12 +29,14 @@ export default function RouteFontEnd() {
         <Route path="/video" element={<VideoPlayer />} />
       </Route>
 
+
       <Route element={<IndexLayout />}>
         <Route path="/login" element={<Login />} />
         <Route path="/success" element={<Success />} />
         <Route path="/pay" element={<Payment />} />
         <Route path="/sub" element={<Sub />} />
         <Route path="/test" element={<Test/>} /> 
+        <Route path="/auth" element={<Auth/>} />
       </Route>
     </Routes>
   );

@@ -1,6 +1,6 @@
 import Header from "../components/Header";
 import Sidebar from "../components/SideBar";
-import { Outlet, Route } from "react-router-dom";
+import { Outlet, Navigate } from "react-router-dom"; // Thay thế Route bằng Navigate
 
 export default function Layoutmain() {
   const loggedIn = localStorage.getItem("auth");
@@ -18,6 +18,6 @@ export default function Layoutmain() {
       </div>
     );
   } else {
-    return <Route path="/login" />;
+    return <Navigate to="/login" />; // Sử dụng Navigate để chuyển hướng
   }
 }

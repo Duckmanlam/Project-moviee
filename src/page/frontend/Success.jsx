@@ -3,7 +3,6 @@ export default function Success() {
       <div className="text-20 text-center my-5">
         CineMax
         <hr className="w-full h-px mt-5 bg-gray-200 border-0 dark:bg-gray-700"></hr>
-        
         <div className="mx-auto mt-40 max-w-screen-md text-center mb-8 lg:mb-12">
         <img
             className="mb-8 ml-72"
