@@ -1,49 +1,54 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
+import Dropzone from 'react-dropzone';
 
-const FileUpload = () => {
+export default function FileUpload() {
   const [selectedFile, setSelectedFile] = useState(null);
-  const [uploadedImageUrl, setUploadedImageUrl] = useState('');
-  const [uploadStatus, setUploadStatus] = useState('');
 
-  const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    setSelectedFile(file);
-
-    // Create a temporary URL for the selected image
-    setUploadedImageUrl(URL.createObjectURL(file));
+  const onDrop = (acceptedFiles) => {
+    setSelectedFile(acceptedFiles[0]);
   };
 
-  const handleUpload = async () => {
-    if (!selectedFile) return;
-
+  const uploadChunk = async (chunk) => {
+    const url = 'https://streamapi.com:5041/UploadMP4'; // Update with your endpoint URL
     const formData = new FormData();
-    formData.append('file', selectedFile);
+    formData.append('file', chunk, chunk.name);
 
-    try {
-      const response = await axios.post('https://tho.com:7220/api/Files/UploadFile', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+    return axios.post(url, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  };
 
-      if (response.status === 200) {
-        setUploadStatus('File uploaded successfully.');
-        setUploadedImageUrl(response.data.imageUrl);
-      }
-    } catch (error) {
-      setUploadStatus('Error uploading file.');
+  const uploadFile = async () => {
+    const chunkSize = 12428800; // 5MB chunks
+    const fileSize = selectedFile.size;
+    let offset = 0;
+
+    while (offset < fileSize) {
+      const chunk = selectedFile.slice(offset, offset + chunkSize);
+      await uploadChunk(chunk);
+      offset += chunkSize;
     }
+
+    alert('File uploaded successfully');
   };
 
   return (
     <div>
-      <input type="file" onChange={handleFileChange} />
-      <button onClick={handleUpload}>Upload File</button>
-      <p>{uploadStatus}</p>
-      {uploadedImageUrl && <img src={uploadedImageUrl} alt="Uploaded" />}
+      <h2>Upload Video</h2>
+      <Dropzone onDrop={onDrop}>
+        {({ getRootProps, getInputProps }) => (
+          <div {...getRootProps({ className: 'dropzone' })}>
+            <input {...getInputProps()} />
+            <p>Drag and drop a video file here, or click to select a file</p>
+          </div>
+        )}
+      </Dropzone>
+      <button onClick={uploadFile} disabled={!selectedFile}>
+        Upload
+      </button>
     </div>
   );
-};
-
-export default FileUpload;
+}

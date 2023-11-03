@@ -9,7 +9,6 @@ import {
   EditProfile,
   VideoPlayer,
   Upload,
-  Dowload,
   TopRated,
   Test,
 } from "../page/frontend";
@@ -22,7 +21,6 @@ export default function RouteFontEnd() {
       <Route element={<LayoutMain />}>
         <Route path="" element={<Homepage />} />
         <Route path="/toprated" element={<TopRated />} />
-        <Route path="/dowload" element={<Dowload />} />
         <Route path="/upload" element={<Upload />} />
         <Route path="/edit" element={<EditProfile />} />
         <Route path="/data" element={<Data />} />
