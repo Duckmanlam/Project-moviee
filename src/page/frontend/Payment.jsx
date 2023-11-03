@@ -22,7 +22,6 @@ export default function Payment() {
                 
               />
               <label
-                for="purple-radio"
                 className=" w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 PayPal
@@ -42,8 +41,7 @@ export default function Payment() {
                 alt=""
               ></img>
               <label
-                for="bordered-radio-1"
-                class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                className="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 
               </label>
@@ -113,23 +111,23 @@ export default function Payment() {
           <div className="bg-Grayscale10 w-1/2 pb-96 pt-10 shrink-0 ml-auto text-18 font-medium">
             <div className="ml-20 mr-20">
               <ul className="flex my-6">
-                <li class="text-Grayscale60">Subtotal</li>
-                <li class="ml-auto">$4.99</li>
+                <li className="text-Grayscale60">Subtotal</li>
+                <li className="ml-auto">$4.99</li>
               </ul>
               <ul className="flex my-6">
-                <li class="text-Grayscale60">Plan type</li>
-                <li class="ml-auto">Monthly</li>
+                <li className="text-Grayscale60">Plan type</li>
+                <li className="ml-auto">Monthly</li>
               </ul>
               <ul className="flex my-6">
-                <li class="text-Grayscale60">Monthly plan discount</li>
-                <li class="ml-auto">-$5</li>
+                <li className="text-Grayscale60">Monthly plan discount</li>
+                <li className="ml-auto">-$5</li>
               </ul>
-              <hr class="w-auto h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+              <hr className="w-auto h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"></hr>
               <ul className="flex my-6">
-                <li class="text-Grayscale60">Billed Now</li>
-                <li class="ml-auto  text-Primary">$35</li>
+                <li className="text-Grayscale60">Billed Now</li>
+                <li className="ml-auto  text-Primary">$35</li>
               </ul>           
-              <p class="text-left text-16 text-Grayscale70">
+              <p className="text-left text-16 text-Grayscale70">
                 You will be charged $5 every yearly thereafter while the
                 subscription is active. Cancel any time.
               </p>

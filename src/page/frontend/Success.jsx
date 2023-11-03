@@ -2,7 +2,7 @@ export default function Success() {
     return (
       <div className="text-20 text-center my-5">
         CineMax
-        <hr class="w-full h-px mt-5 bg-gray-200 border-0 dark:bg-gray-700"></hr>
+        <hr className="w-full h-px mt-5 bg-gray-200 border-0 dark:bg-gray-700"></hr>
         
         <div className="mx-auto mt-40 max-w-screen-md text-center mb-8 lg:mb-12">
         <img
@@ -19,7 +19,7 @@ export default function Success() {
           </p>
           <button
             type="button"
-            class="py-4 px-10 mb-2 rounded-3xl text-sm font-medium text-Label focus:outline-none bg-white border border-Label hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+            className="py-4 px-10 mb-2 rounded-3xl text-sm font-medium text-Label focus:outline-none bg-white border border-Label hover:bg-gray-100 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
           >
             Start Watching{" "}
           </button>
