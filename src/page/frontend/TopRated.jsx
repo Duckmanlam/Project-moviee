@@ -122,7 +122,7 @@ const lists = [
 const MovieList = () => {
   return (
     <div className="relative">
-      <div className="absolute top-0">
+      <div className="absolute top-0 z-20">
         <p className="ml-8 mb-5 mt-1 text-24 font-bold dark:text-Grayscale70 ">
           Top Rated
         </p>
@@ -142,7 +142,7 @@ const MovieList = () => {
           ))}
         </div>
       </div>
-      <div className="absolute top-80">
+      <div className="absolute top-64 z-10">
         <p className="ml-8 mt-10 text-24 font-bold dark:text-Grayscale70 ">
           Best of Action
         </p>

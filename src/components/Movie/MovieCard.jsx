@@ -28,7 +28,7 @@ const MovieCard = ({ number, title, drama, imageUrl, start, imgstart, imgtype })
         </div>
       ) : (
         <div className='flex'>
-          <p className="text-8xl mt-7 font-semibold dark:text-black ">{number}</p>
+          <p className="text-8xl mt-7 font-semibold dark:text-Grayscale70 ">{number}</p>
           <img src={imageUrl} alt={title} className="w-24 h-36" />
         </div>
       )}
