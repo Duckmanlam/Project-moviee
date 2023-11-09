@@ -15,6 +15,7 @@ import {
 import { LayoutMain, IndexLayout } from "../layout";
 import Login from "../page/auth/Login";
 import Auth from "../page/auth/Register";
+import CardTest from "../components/Movie/card";
 
 export default function RouteFontEnd() {
   return (
@@ -27,6 +28,7 @@ export default function RouteFontEnd() {
         <Route path="/data" element={<Data />} />
         <Route path="/pass" element={<Password />} />
         <Route path="/video" element={<VideoPlayer />} />
+        <Route path="/card" element={<CardTest/>} />
       </Route>
 
 
