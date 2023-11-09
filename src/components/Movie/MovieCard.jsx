@@ -6,7 +6,7 @@ const MovieCard = ({ number, title, drama, imageUrl, start, imgstart, imgtype })
   return (
     <div
       className={` ${
-        isHovered ? 'hover:scale-200' : ''
+        isHovered ? 'hover:scale-125 duration-200' : ''
       }  duration-200`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}

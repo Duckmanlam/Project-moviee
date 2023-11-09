@@ -1,7 +1,7 @@
 const Card = ({ title, drama, imageUrl, start, imgstart }) => {
   return (
     <div className="hover:scale-125 duration-200 ">
-      <div className="mt-2 ml-5 grid rounded-3xl bg-center max-w-7xl h-72 shadow-sm bg-slate-100  flex-col">
+      <div className="mt-2 ml-5 grid rounded-3xl bg-center max-w-7xl h-72 shadow-sm bg-slate-100 flex-col">
         <img
           src={imageUrl}
           alt={title}
