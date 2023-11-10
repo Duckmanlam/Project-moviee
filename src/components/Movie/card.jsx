@@ -1,6 +1,6 @@
-const Card = ({ title, drama, imageUrl, start, imgstart }) => {
+const Card = ({ title, drama, imageUrl, start, imgstart, play }) => {
   return (
-    <div className="hover:scale-125 duration-200 ">
+    <div className="hover:scale-150 duration-200 ">
       <div className="mt-2 ml-5 grid rounded-3xl bg-center max-w-7xl h-72 shadow-sm bg-slate-100 flex-col">
         <img
           src={imageUrl}
@@ -19,6 +19,7 @@ const Card = ({ title, drama, imageUrl, start, imgstart }) => {
             <p className="dark:text-black text-xl flex gap-x-1 items-center group-hover:text-yellow-700">
               {start}
             </p>
+            <img src={play} className="w-10 h-10 ml-auto -mt-4" />
           </div>
         </div>
       </div>
