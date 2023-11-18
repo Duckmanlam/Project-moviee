@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 const data = {
   "rating": [
@@ -123,11 +124,12 @@ export default function TopMovies() {
           </div>
         </div>
       ))}
-     <div
+      <Link to="/toprated" ><div
   className="justify-center	flex 	 mt-5 bg-transparent text-Primary font-semibold hover:text-white py-2 px-4 hover:underline w-full rounded-full"
 >
   Xem thêm 
-</div>
+</div></Link>
+     
 
 
     </div>

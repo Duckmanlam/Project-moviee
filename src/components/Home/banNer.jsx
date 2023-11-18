@@ -3,7 +3,6 @@ import ReactPlayer from 'react-player';
 
 export default function Banner() {
   const data = {
-    thumbnailUrl: "https://lh3.google.com/u/0/d/11FFJXZYLfM5VUcqUpvZnSP6HCdqSCXon=w1920-h963-iv1",
     videoUrls: [
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4" // Add your video URLs here

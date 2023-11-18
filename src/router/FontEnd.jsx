@@ -8,13 +8,14 @@ import {
   Success,
   EditProfile,
   VideoPlayer,
-  Upload,
+  
   TopRated,
   Test,
 } from "../page/frontend";
 import { LayoutMain, IndexLayout } from "../layout";
 import Auth from "../page/auth/Login";
 import CardTest from "../components/Movie/card";
+import Register from "../page/auth/Register";
 
 export default function RouteFontEnd() {
   return (
@@ -22,7 +23,6 @@ export default function RouteFontEnd() {
       <Route element={<LayoutMain />}>
         <Route path="/" element={<Homepage />} />
         <Route path="/toprated" element={<TopRated />} />
-        <Route path="/upload" element={<Upload />} />
         <Route path="/edit" element={<EditProfile />} />
         <Route path="/data" element={<Data />} />
         <Route path="/pass" element={<Password />} />
@@ -37,6 +37,7 @@ export default function RouteFontEnd() {
         <Route path="/sub" element={<Sub />} />
         <Route path="/test" element={<Test/>} /> 
         <Route path="/login" element={<Auth/>} />
+        <Route path="/register" element={<Register/>} />
       </Route>
     </Routes>
   );

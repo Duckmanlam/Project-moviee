@@ -7,7 +7,6 @@ import Sub from "./Sub";
 import Success from "./Success";
 import Test from "./test";
 import TopRated from "./TopRated";
-import Upload from "./Upload";
 import VideoPlayer from "./videoPlayer";
 export {
   Homepage,
@@ -19,6 +18,5 @@ export {
   Success,
   Test,
   TopRated,
-  Upload,
   VideoPlayer,
 };
