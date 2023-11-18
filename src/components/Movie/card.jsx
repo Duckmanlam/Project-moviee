@@ -6,7 +6,7 @@ const Card = ({ title, drama, imageUrl, start, imgstart, play }) => {
         <img
           src={imageUrl}
           alt={title}
-          className="w-56 h-44 bg-center ml-auto mr-auto block "
+          className="w-full h-44 bg-center ml-auto mr-auto block"
         />
         <div className="group p-6 grid z-10">
           <div className="group-hover:text-yellow-700 font-bold sm:text-xl line-clamp-2 dark:text-black ">

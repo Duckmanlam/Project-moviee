@@ -7,14 +7,14 @@ const MovieCard = ({ number, title, drama, imageUrl, start, imgstart, imgtype, p
   return (
     <div
       className={` ${
-        isHovered ? 'hover:scale-150 duration-200' : ''
+        isHovered ? 'hover:scale-110 duration-200' : ''
       }  duration-200`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
       {isHovered ? (
         <div className=" grid rounded-xl bg-center max-w-7xl shadow-sm bg-slate-100">
-           <img src={imageUrl} alt={title} className="w-56 h-44 bg-center ml-auto mr-auto block" />
+           <img src={imageUrl} alt={title} className="w-60 h-40 bg-center ml-auto mr-auto block" />
           <div className="ml-2">
             <div className=" mt-3 font-bold text-18 dark:text-black ">{title}</div>
             <div className="flex">
@@ -24,7 +24,7 @@ const MovieCard = ({ number, title, drama, imageUrl, start, imgstart, imgtype, p
             <div className="flex">
               <img src={imgstart} alt={title} className="w-5 h-5 mr-2 mb-3 " />
               <p className="dark:text-black text-12 mb-3">{start}</p>
-              <img src={play} className="w-10 h-10 ml-auto mr-3 -mt-6" />
+              <img src={play} className="w-5 h-5 ml-auto mr-3" />
             </div>
           </div>
         </div>

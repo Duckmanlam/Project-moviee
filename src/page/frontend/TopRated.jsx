@@ -82,6 +82,32 @@ const movies = [
       "https://lh3.google.com/u/0/d/1AP7SNnuiEl_oXA7cZq14wxWnUWQ3sgD3=w2939-h1034-iv1",
     play: "	https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
   },
+  {
+    number: 7,
+    title: "The Godfather",
+    drama: "Crime • Drama",
+    imageUrl:
+      "https://lh3.google.com/u/0/d/1xWHx6BXmT03rfnu-F-Ln2KwOEiFdltxq=w2000-h1538-iv1",
+    start: "9.2",
+    imgstart:
+      "https://lh3.google.com/u/0/d/1_BxjM_nMxIhMT0pJByy1ErL090ReiP7u=w2939-h1216-iv1",
+    imgtype:
+      "https://lh3.google.com/u/0/d/1AP7SNnuiEl_oXA7cZq14wxWnUWQ3sgD3=w2939-h1034-iv1",
+    play: "	https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
+  },
+  {
+    number: 8,
+    title: "The Dark Knight",
+    drama: "Action • Crime",
+    imageUrl:
+      "	https://lh3.google.com/u/0/d/1QLSw7ilmSnd-yEYFNaQSKtsPVkw4qjxN=w2000-h1538-iv1",
+    start: "9.0",
+    imgstart:
+      "https://lh3.google.com/u/0/d/1_BxjM_nMxIhMT0pJByy1ErL090ReiP7u=w2939-h1216-iv1",
+    imgtype:
+      "https://lh3.google.com/u/0/d/1AP7SNnuiEl_oXA7cZq14wxWnUWQ3sgD3=w2939-h1034-iv1",
+    play: "	https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
+  },
 ];
 
 const lists = [
@@ -159,13 +185,19 @@ const lists = [
 const MovieList = () => {
   return (
     <div className="relative">
-      <div className="absolute top-0 z-20">
-        <p className="ml-8 mb-5 mt-1 text-24 font-bold dark:text-Grayscale70 ">
-          Top Rated
-        </p>
-        <div className="flex flex-wrap ">
-          {movies.map((movie, index) => (
-            <div key={index} className="m-4">
+       <div className="absolute top-0 z-20 w-full h-full rounded-lg shadow-lg">
+      <p className="ml-8 mb-5 mt-1 text-24 font-bold dark:text-Grayscale70">
+        Top Rated
+      </p>
+      <Swiper
+        spaceBetween={10}
+        slidesPerView={6}
+        onSlideChange={() => console.log("slide change")}
+        onSwiper={(swiper) => console.log(swiper)}
+      >
+        {movies.map((movie, index) => (
+          <SwiperSlide key={index} className="swiper-slide">
+            <div className="m-4">
               <MovieCard
                 number={movie.number}
                 title={movie.title}
@@ -177,16 +209,17 @@ const MovieList = () => {
                 play={movie.play}
               />
             </div>
-          ))}
-        </div>
-      </div>
+          </SwiperSlide>
+        ))}
+      </Swiper>
+    </div>
       <div className="absolute top-64 z-10 w-full h-full rounded-lg shadow-lg">
         <p className="ml-8 mt-10 text-24 font-bold dark:text-Grayscale70">
           Best of Action
         </p>
         <Swiper
           spaceBetween={10}
-          slidesPerView={3.5}
+          slidesPerView={4.5}
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
         >
@@ -206,7 +239,7 @@ const MovieList = () => {
           ))}
         </Swiper>
       </div>
-    </div>
+    </div >
   );
 };
 
