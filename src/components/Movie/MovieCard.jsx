@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+// eslint-disable-next-line react/prop-types
 const MovieCard = ({ number, title, drama, imageUrl, start, imgstart, imgtype, play }) => {
   const [isHovered, setIsHovered] = useState(false);
 

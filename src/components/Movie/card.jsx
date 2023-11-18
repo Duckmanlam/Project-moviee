@@ -1,3 +1,4 @@
+// eslint-disable-next-line react/prop-types
 const Card = ({ title, drama, imageUrl, start, imgstart, play }) => {
   return (
     <div className="hover:scale-150 duration-200 ">

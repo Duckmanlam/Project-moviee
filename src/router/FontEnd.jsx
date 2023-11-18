@@ -13,8 +13,7 @@ import {
   Test,
 } from "../page/frontend";
 import { LayoutMain, IndexLayout } from "../layout";
-import Login from "../page/auth/Login";
-import Auth from "../page/auth/Register";
+import Auth from "../page/auth/Login";
 import CardTest from "../components/Movie/card";
 
 export default function RouteFontEnd() {
@@ -33,12 +32,11 @@ export default function RouteFontEnd() {
 
 
       <Route element={<IndexLayout />}>
-        <Route path="/login" element={<Login />} />
         <Route path="/success" element={<Success />} />
         <Route path="/pay" element={<Payment />} />
         <Route path="/sub" element={<Sub />} />
         <Route path="/test" element={<Test/>} /> 
-        <Route path="/auth" element={<Auth/>} />
+        <Route path="/login" element={<Auth/>} />
       </Route>
     </Routes>
   );
