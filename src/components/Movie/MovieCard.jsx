@@ -15,7 +15,7 @@ const MovieCard = ({ number, title, drama, imageUrl, start, imgstart, imgtype, p
       {isHovered ? (
         <div className=" grid rounded-xl bg-center max-w-7xl shadow-sm bg-slate-100">
            <img src={imageUrl} alt={title} className="w-56 h-44 bg-center ml-auto mr-auto block" />
-          <div className="ml-5">
+          <div className="ml-2">
             <div className=" mt-3 font-bold text-18 dark:text-black ">{title}</div>
             <div className="flex">
               <img src={imgtype} alt={title} className="w-5 h-5 mr-2 " />

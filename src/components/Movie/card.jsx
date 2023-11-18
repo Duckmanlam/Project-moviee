@@ -1,8 +1,8 @@
 // eslint-disable-next-line react/prop-types
 const Card = ({ title, drama, imageUrl, start, imgstart, play }) => {
   return (
-    <div className="hover:scale-150 duration-200 ">
-      <div className="mt-2 ml-5 grid rounded-3xl bg-center max-w-7xl h-72 shadow-sm bg-slate-100 flex-col">
+    <div className="hover:scale-110 duration-200 ">
+      <div className="mt-2 ml-2 grid rounded-3xl bg-center max-w-7xl h-72 shadow-sm bg-slate-100 flex-col">
         <img
           src={imageUrl}
           alt={title}
