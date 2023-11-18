@@ -30,7 +30,6 @@ export default function RouteFontEnd() {
         <Route path="/card" element={<CardTest/>} />
       </Route>
 
-
       <Route element={<IndexLayout />}>
         <Route path="/success" element={<Success />} />
         <Route path="/pay" element={<Payment />} />
