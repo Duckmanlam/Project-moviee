@@ -76,7 +76,9 @@ export default function Navbar() {
             role="button"
           ></button>
         </div>
-        <div></div>
+        <div>
+          
+        </div>
         {/*
         <div
           className="items-center justify-between hidden w-full md:flex md:w-auto "
@@ -117,6 +119,7 @@ export default function Navbar() {
             </li>
           </ul>
         </div> */}
+        
         <div
           className="items-center justify-between hidden w-full md:flex md:w-auto "
           id="navbar-user"

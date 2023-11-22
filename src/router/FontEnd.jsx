@@ -16,6 +16,7 @@ import { LayoutMain, IndexLayout } from "../layout";
 import Auth from "../page/auth/Login";
 import CardTest from "../components/Movie/card";
 import Register from "../page/auth/Register";
+import NewMovie from "../page/frontend/NewMovie";
 
 export default function RouteFontEnd() {
   return (
@@ -28,6 +29,7 @@ export default function RouteFontEnd() {
         <Route path="/pass" element={<Password />} />
         <Route path="/video" element={<VideoPlayer />} />
         <Route path="/card" element={<CardTest/>} />
+        <Route path="/new" element={<NewMovie/>} />
       </Route>
 
       <Route element={<IndexLayout />}>
@@ -37,6 +39,7 @@ export default function RouteFontEnd() {
         <Route path="/test" element={<Test/>} /> 
         <Route path="/login" element={<Auth/>} />
         <Route path="/register" element={<Register/>} />
+       
       </Route>
     </Routes>
   );

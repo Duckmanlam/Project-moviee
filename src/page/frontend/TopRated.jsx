@@ -185,34 +185,39 @@ const lists = [
 const MovieList = () => {
   return (
     <div className="relative">
-       <div className="absolute top-0 z-20 w-full h-full rounded-lg shadow-lg">
-      <p className="ml-8 mb-5 mt-1 text-24 font-bold dark:text-Grayscale70">
-        Top Rated
-      </p>
-      <Swiper
-        spaceBetween={10}
-        slidesPerView={6}
-        onSlideChange={() => console.log("slide change")}
-        onSwiper={(swiper) => console.log(swiper)}
-      >
-        {movies.map((movie, index) => (
-          <SwiperSlide key={index} className="swiper-slide">
-            <div className="m-4">
-              <MovieCard
-                number={movie.number}
-                title={movie.title}
-                drama={movie.drama}
-                imageUrl={movie.imageUrl}
-                start={movie.start}
-                imgstart={movie.imgstart}
-                imgtype={movie.imgtype}
-                play={movie.play}
-              />
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </div>
+      <div className="absolute top-0 z-20 w-full h-full rounded-lg shadow-lg">
+        <p className="ml-8 mb-5 mt-1 text-24 font-bold dark:text-Grayscale70">
+          Top Rated
+        </p>
+        <Swiper
+          spaceBetween={10}
+          slidesPerView={6}
+          onSlideChange={() => console.log("slide change")}
+          onSwiper={(swiper) => console.log(swiper)}
+        >
+          {movies.map((movie, index) => (
+            <SwiperSlide key={index} className="swiper-slide">
+              <div className="m-4">
+                <a
+                  href="/video"
+                  className=" py-1 flex items-center space-x-4 rounded-md  group"
+                >
+                  <MovieCard
+                    number={movie.number}
+                    title={movie.title}
+                    drama={movie.drama}
+                    imageUrl={movie.imageUrl}
+                    start={movie.start}
+                    imgstart={movie.imgstart}
+                    imgtype={movie.imgtype}
+                    play={movie.play}
+                  />
+                </a>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
       <div className="absolute top-64 z-10 w-full h-full rounded-lg shadow-lg">
         <p className="ml-8 mt-10 text-24 font-bold dark:text-Grayscale70">
           Best of Action
@@ -226,20 +231,25 @@ const MovieList = () => {
           {lists.map((list, index) => (
             <SwiperSlide key={index} className="swiper-slide">
               <div className="m-4 relative">
-                <Card
-                  title={list.title}
-                  drama={list.drama}
-                  imageUrl={list.imageUrl}
-                  start={list.start}
-                  imgstart={list.imgstart}
-                  play={list.play}
-                />
+                <a
+                  href="/video"
+                  className=" py-1 flex items-center space-x-4 rounded-md  group"
+                >
+                  <Card
+                    title={list.title}
+                    drama={list.drama}
+                    imageUrl={list.imageUrl}
+                    start={list.start}
+                    imgstart={list.imgstart}
+                    play={list.play}
+                  />
+                </a>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
-    </div >
+    </div>
   );
 };
 
