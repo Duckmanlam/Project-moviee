@@ -1,11 +1,9 @@
 import Header from "../components/Header";
 import Sidebar from "../components/SideBar";
-import { Outlet, Navigate } from "react-router-dom"; // Thay thế Route bằng Navigate
+import { Outlet,  } from "react-router-dom"; // Thay thế Route bằng Navigate
 
 export default function Layoutmain() {
-  const loggedIn = localStorage.getItem("auth");
-
-  if (loggedIn === "true") {
+  
     return (
       <div className="max-w-screen-xl mx-auto h-screen overflow-hidden">
         <Header />
@@ -17,7 +15,5 @@ export default function Layoutmain() {
         </div>
       </div>
     );
-  } else {
-    return <Navigate to="/login" />; // Sử dụng Navigate để chuyển hướng
-  }
+  
 }
