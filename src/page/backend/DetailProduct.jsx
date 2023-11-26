@@ -91,26 +91,6 @@ function DetailProduct () {
               <p className="text-Grayscale60 mr-20">{data.mpaRatings}</p>
             </div>
           </div>
-          <div className="font-semibold mt-5 mb-5 "> Top Cast</div>
-            <div className="pb-16">
-              <ul className="flex">
-                {data.cast.map((actor) => (
-                  <li className="flex"key={actor.id}>
-                    <div>
-                      <img className="mr-3 w-10 rounded-3xl" src="http://streamapi.com/avatars/638297944819706500.png" alt="a" />
-                    </div>
-                    <div>
-                      <p className=" text-16 font-semibold mr-16">
-                        {actor.nameOfActor}
-                      </p>
-                      <p className="text-Grayscale60 text-12">
-                        {actor.nameInFilm}
-                      </p>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
         </>
       ) : (
         <p>No data available.</p>

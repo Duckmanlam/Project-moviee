@@ -90,25 +90,31 @@ export default function MovieAdmin() {
                 <thead className="border-b font-medium dark:border-neutral-500">
                   <tr>
                     <th scope="col" className="px-6 py-4">
-                      #
+                    MPARatings
                     </th>
                     <th scope="col" className="px-6 py-4">
-                      Video
+                    Title
                     </th>
                     <th scope="col" className="px-6 py-4">
-                      Genre
+                    Duration
                     </th>
                     <th scope="col" className="px-6 py-4">
-                      Addition Date
+                    PosterImage
                     </th>
                     <th scope="col" className="px-6 py-4">
                       View
                     </th>
                     <th scope="col" className="px-6 py-4">
-                      Like
+                    AdditionDate
                     </th>
                     <th scope="col" className="px-6 py-4">
                       Rating
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                    Like
+                    </th>
+                    <th scope="col" className="px-6 py-4">
+                    Genre
                     </th>
                   </tr>
                 </thead>

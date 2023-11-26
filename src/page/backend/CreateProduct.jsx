@@ -8,29 +8,13 @@ export default function CreateProduct() {
   const [selectedImage, setSelectedImage] = useState(null);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
-  const [selectedImage2, setSelectedImage2] = useState(null);
-  const [selectedImage3, setSelectedImage3] = useState(null);
-  const [selectedImage4, setSelectedImage4] = useState(null);
+
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
   };
 
-  const handleImageChange2 = (event) => {
-    const file = event.target.files[0];
-    setSelectedImage2(URL.createObjectURL(file));
-  };
-
-  const handleImageChange3 = (event) => {
-    const file = event.target.files[0];
-    setSelectedImage3(URL.createObjectURL(file));
-  };
-
-  const handleImageChange4 = (event) => {
-    const file = event.target.files[0];
-    setSelectedImage4(URL.createObjectURL(file));
-  };
 
   const handleDrop = useCallback((acceptedFiles) => {
     const file = acceptedFiles[0];
@@ -44,24 +28,31 @@ export default function CreateProduct() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
+  
     const formData = new FormData();
-    formData.append("title", selectedDate);
-    formData.append("content", selectedImage2);
-    formData.append("image", selectedImage);
-    formData.append("video", selectedVideo);
-    formData.append("video", selectedImage3);
-    formData.append("video", selectedImage4);
-
+    formData.append("title", event.target.title.value);
+    formData.append("content", event.target.content.value);
+    formData.append("releaseYear", selectedDate);
+    formData.append("genre", event.target.genre.value);
+    formData.append("language", event.target.language.value);
+    formData.append("country", event.target.country.value);
+    formData.append("mpaRating", event.target.mpaRating.value);
+    formData.append("image", event.target.image.files[0]);
+    formData.append("video", event.target.video.files[0]);
+  
     axios
-      .post("https://streamapi.com:7243/ListProduct/AddMovie", formData)
+      .post("https://streamapi.com:7243/ListProduct/AddMovie", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((response) => {
         console.log(response.data);
-        // Xử lý khi gửi thành công
+        // Handle success
       })
       .catch((error) => {
         console.error(error);
-        // Xử lý khi gửi thất bại
+        // Handle error
       });
   };
 
@@ -188,145 +179,7 @@ export default function CreateProduct() {
         </select>
         <div className="">
           <div>
-            <p className="text-20 mt-6 mb-6">Actor</p>
             <div className="flex">
-              <div className="flex">
-                <div className="w-12 h-12 border-solid border rounded-3xl border-black flex items-center justify-center overflow-hidden relative">
-                  {!selectedImage2 && (
-                    <>
-                      <label htmlFor="image-upload" className="cursor-pointer">
-                        <svg
-                          className="w-10 h-10 text-black hover:text-black"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                          />
-                        </svg>
-                      </label>
-                      <input
-                        type="file"
-                        id="image-upload"
-                        accept="image/*"
-                        onChange={handleImageChange2}
-                        className="hidden"
-                      />
-                    </>
-                  )}
-                  {selectedImage2 && (
-                    <img src={selectedImage2} alt="Selected" />
-                  )}
-                </div>
-                <div className="ml-10">
-                  <input
-                    id="helper-text"
-                    aria-describedby="helper-text-explanation"
-                    className="bg-white border w-48 border-black text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Name actor"
-                  />
-                  <input
-                    id="helper-text"
-                    aria-describedby="helper-text-explanation"
-                    className="mt-6 bg-white w-48 border border-black text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Name film"
-                  />
-                </div>
-                <div className="ml-10 w-12 h-12 border-solid border rounded-3xl border-black flex items-center justify-center overflow-hidden relative">
-                  {!selectedImage3 && (
-                    <>
-                      <label htmlFor="image-upload" className="cursor-pointer">
-                        <svg
-                          className="w-10 h-10 text-black hover:text-black"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                          />
-                        </svg>
-                      </label>
-                      <input
-                        type="file"
-                        id="image-upload"
-                        accept="image/*"
-                        onChange={handleImageChange3}
-                        className="hidden"
-                      />
-                    </>
-                  )}
-                  {selectedImage3 && (
-                    <img src={selectedImage3} alt="Selected" />
-                  )}
-                </div>
-                <div className="ml-10">
-                  <input
-                    id="helper-text"
-                    aria-describedby="helper-text-explanation"
-                    className="bg-white border w-48 border-black text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Name actor"
-                  />
-                  <input
-                    id="helper-text"
-                    aria-describedby="helper-text-explanation"
-                    className="mt-6 bg-white w-48 border border-black text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Name film"
-                  />
-                </div>
-                <div className=" ml-10 w-12 h-12 border-solid border rounded-3xl border-black flex items-center justify-center overflow-hidden relative">
-                  {!selectedImage4 && (
-                    <>
-                      <label htmlFor="image-upload" className="cursor-pointer">
-                        <svg
-                          className="w-10 h-10 text-black hover:text-black"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 6v6m0 0v6m0-6h6m-6 0H6"
-                          />
-                        </svg>
-                      </label>
-                      <input
-                        type="file"
-                        id="image-upload"
-                        accept="image/*"
-                        onChange={handleImageChange4}
-                        className="hidden"
-                      />
-                    </>
-                  )}
-                  {selectedImage4 && (
-                    <img src={selectedImage4} alt="Selected" />
-                  )}
-                </div>
-                <div className="ml-10">
-                  <input
-                    id="helper-text"
-                    aria-describedby="helper-text-explanation"
-                    className="bg-white border w-48 border-black text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Name actor"
-                  />
-                  <input
-                    id="helper-text"
-                    aria-describedby="helper-text-explanation"
-                    className="mt-6 bg-white w-48 border border-black text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block  p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                    placeholder="Name film"
-                  />
-                </div>
-              </div>
               <div>
                 <a
                   href="/"
