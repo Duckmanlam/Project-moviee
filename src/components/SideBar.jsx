@@ -79,24 +79,6 @@ export default function Sidebar() {
         <div className="mt-10">
           <p className="text-Grayscale60 text-16-500 ">LIBRARY</p>
           <ul className="space-y-2 tracking-wide mt-6">
-            <li>
-              <a
-                href="/new"
-                className=" py-4 flex items-center space-x-4 rounded-md  group"
-              >
-                <svg fill="none" viewBox="0 0 15 15" height="25" width="25">
-                  <path
-                    fill="#78828A"
-                    fillRule="evenodd"
-                    d="M12 13a1 1 0 001-1V3a1 1 0 00-1-1H3a1 1 0 00-1 1v3.5a.5.5 0 001 0V3h9v9H8.5a.5.5 0 000 1H12zM9 6.5v3a.5.5 0 01-1 0V7.707l-5.146 5.147a.5.5 0 01-.708-.708L7.293 7H5.5a.5.5 0 010-1h3a.498.498 0 01.5.497"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span className="group-hover: text-16-600 text-Grayscale70 dark:hover:text-Grayscale10  ">
-                  New
-                </span>
-              </a>
-            </li>
             <div className=" py-1 flex justify-between items-center mt-1">
               <div className=" py-3 flex items-center space-x-4 rounded-md  group">
                 <svg

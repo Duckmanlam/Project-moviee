@@ -7,7 +7,7 @@ function DetailProduct () {
   const getApi = async () => {
     try {
       const response = await axios.get(
-        "https://streamapi.com:7243/DetailMovie/64fb0541a42c0c55a1ee8b58"
+        "https://streamapi.com:3000/list-model/"
       );
       setData(response.data);
     } catch (error) {
