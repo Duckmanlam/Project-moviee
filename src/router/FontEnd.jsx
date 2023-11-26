@@ -14,7 +14,6 @@ import {
 } from "../page/frontend";
 import { LayoutMain, IndexLayout } from "../layout";
 import Auth from "../page/auth/Login";
-import CardTest from "../components/Movie/card";
 import Register from "../page/auth/Register";
 import NewMovie from "../page/frontend/NewMovie";
 
@@ -28,7 +27,6 @@ export default function RouteFontEnd() {
         <Route path="/data" element={<Data />} />
         <Route path="/pass" element={<Password />} />
         <Route path="/video" element={<VideoPlayer />} />
-        <Route path="/card" element={<CardTest/>} />
         <Route path="/new" element={<NewMovie/>} />
       </Route>
 

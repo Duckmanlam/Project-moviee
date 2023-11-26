@@ -1,7 +1,8 @@
 import MovieCard from "../../components/Movie/MovieCard";
-import Card from "../../components/Movie/card";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const movies = [
   {
@@ -109,80 +110,31 @@ const movies = [
     play: "	https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
   },
 ];
-
-const lists = [
-  {
-    title: "The Shawshank",
-    drama: "| Drama",
-    imageUrl:
-      "	https://lh3.google.com/u/0/d/1DmKMdSQJHcVmflT-SpVp0O3a73A6iwED=w2939-h1034-iv1",
-    start: "9.2",
-    imgstart:
-      "https://lh3.google.com/u/0/d/1_BxjM_nMxIhMT0pJByy1ErL090ReiP7u=w2939-h1216-iv1",
-    play: "https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
-  },
-  {
-    title: "The Godfather",
-    drama: "| Crime • Drama",
-    imageUrl:
-      "		https://lh3.google.com/u/0/d/1e__TevmCk50DIkBQ1nwZ688ufIE76R-I=w2939-h1034-iv1",
-    start: "9.2",
-    imgstart:
-      "https://lh3.google.com/u/0/d/1_BxjM_nMxIhMT0pJByy1ErL090ReiP7u=w2939-h1216-iv1",
-    play: "https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
-  },
-  {
-    title: "The Shawshank",
-    drama: "| Drama",
-    imageUrl:
-      "https://lh3.google.com/u/0/d/1xWHx6BXmT03rfnu-F-Ln2KwOEiFdltxq=w2939-h1034-iv1",
-    start: "9.2",
-    imgstart:
-      "https://lh3.google.com/u/0/d/1_BxjM_nMxIhMT0pJByy1ErL090ReiP7u=w2939-h1216-iv1",
-    play: "https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
-  },
-  {
-    title: "The Shawshank",
-    drama: "| Drama",
-    imageUrl:
-      "https://lh3.google.com/u/0/d/1xWHx6BXmT03rfnu-F-Ln2KwOEiFdltxq=w2939-h1034-iv1",
-    start: "9.2",
-    imgstart:
-      "https://lh3.google.com/u/0/d/1_BxjM_nMxIhMT0pJByy1ErL090ReiP7u=w2939-h1216-iv1",
-    play: "https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
-  },
-  {
-    title: "The Shawshank",
-    drama: "| Drama",
-    imageUrl:
-      "https://lh3.google.com/u/0/d/1xWHx6BXmT03rfnu-F-Ln2KwOEiFdltxq=w2939-h1034-iv1",
-    start: "9.2",
-    imgstart:
-      "https://lh3.google.com/u/0/d/1_BxjM_nMxIhMT0pJByy1ErL090ReiP7u=w2939-h1216-iv1",
-    play: "https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
-  },
-  {
-    title: "The Shawshank",
-    drama: "| Drama",
-    imageUrl:
-      "https://lh3.google.com/u/0/d/1xWHx6BXmT03rfnu-F-Ln2KwOEiFdltxq=w2939-h1034-iv1",
-    start: "9.2",
-    imgstart:
-      "https://lh3.google.com/u/0/d/1_BxjM_nMxIhMT0pJByy1ErL090ReiP7u=w2939-h1216-iv1",
-    play: "https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
-  },
-  {
-    title: "The Shawshank",
-    drama: "| Drama",
-    imageUrl:
-      "https://lh3.google.com/u/0/d/1xWHx6BXmT03rfnu-F-Ln2KwOEiFdltxq=w2939-h1034-iv1",
-    start: "9.2",
-    imgstart:
-      "https://lh3.google.com/u/0/d/1_BxjM_nMxIhMT0pJByy1ErL090ReiP7u=w2939-h1216-iv1",
-    play: "https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
-  },
-];
 const MovieList = () => {
+  const [movieData, setMovieData] = useState([]);
+  const movieApiUrl = `http://streamapi.com:3000/list-model`;
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        // Retrieve the Bearer token from localStorage
+        const bearerToken = localStorage.getItem("accessToken");
+
+        const response = await axios.get(movieApiUrl, {
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+            "Content-Type": "application/json", // Adjust content type if needed
+          },
+        });
+
+        setMovieData(response.data.data);
+        console.log(movieData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [movieApiUrl]);
   return (
     <div className="relative">
       <div className="absolute top-0 z-20 w-full h-full rounded-lg shadow-lg">
@@ -228,21 +180,30 @@ const MovieList = () => {
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
         >
-          {lists.map((list, index) => (
-            <SwiperSlide key={index} className="swiper-slide">
-              <div className="m-4 relative">
+          {movieData.map((movie) => (
+            <SwiperSlide key={movie.id} className="swiper-slide">
+              <div className="m-4 relative hover:scale-110 duration-200">
                 <a
                   href="/video"
-                  className=" py-1 flex items-center space-x-4 rounded-md  group"
+                  className="py-1 items-center space-x-4 rounded-md group"
                 >
-                  <Card
-                    title={list.title}
-                    drama={list.drama}
-                    imageUrl={list.imageUrl}
-                    start={list.start}
-                    imgstart={list.imgstart}
-                    play={list.play}
+                  <img
+                    src={movie.posterImage}
+                    alt="img"
+                    className="mb-5 w-full h-40 bg-center ml-auto mr-auto block object-cover rounded-xl border"
                   />
+                  <div>
+                    <p className="group-hover:text-yellow-700 font-bold sm:text-xl line-clamp-2 dark:text-black">
+                      {movie.title}
+                    </p>
+                    <p className="group-hover:text-orange-300">
+                      Average Rating: {movie.averageRating}
+                    </p>
+                    <p className="group-hover:text-orange-300">
+                      Genres:{" "}
+                      {movie.genre.map((genre) => genre.name).join(", ")}
+                    </p>
+                  </div>
                 </a>
               </div>
             </SwiperSlide>
