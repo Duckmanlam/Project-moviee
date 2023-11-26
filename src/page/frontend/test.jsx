@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 
 const Test = () => {
   const [email, setEmail] = useState('');
@@ -6,27 +6,30 @@ const Test = () => {
 
   const handleLogin = async () => {
     try {
-      // Log email and password before making the API request
-      console.log('Email:', email);
-      console.log('Password:', password);
-  
       // Update the API endpoint
-      const loginUrl = `http://localhost:3000/auth/login`;
-  
+      const loginUrl = `http://streamapi.com:3000/auth/login`;
+
       const response = await fetch(loginUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
+        body: JSON.stringify({ email, password }),
       });
-  
+
       const responseData = await response.json();
-  
+
       if (response.ok) {
         const accessToken = responseData.access_token;
+
+        // Store token in localStorage
         localStorage.setItem('accessToken', accessToken);
+
         console.log('Access Token:', accessToken);
-        window.location.href = '/home';
+
+        // Redirect the user to another page after successful login
+        // Replace '/home' with the desired path
+        window.location.href = '/';
       } else {
         console.error('Login failed. Server response:', responseData);
         // You might want to display an error message to the user based on responseData
