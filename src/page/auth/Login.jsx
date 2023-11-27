@@ -1,52 +1,69 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 const Auth = () => {
-    const [auth, setAuth] = useState({
-        email: "",
-        password: "",
-        rememberMe: false, // Thêm trạng thái ghi nhớ đăng nhập
-        showPassword: false, // Thêm trạng thái ẩn hiện mật khẩu
+  const [auth, setAuth] = useState({
+    email: '',
+    password: '',
+    rememberMe: false,
+    showPassword: false,
+  });
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
+  const handleChange = (evt) => {
+    const { name, value, type, checked } = evt.target;
+    const val = type === 'checkbox' ? checked : value;
+    setAuth({
+      ...auth,
+      [name]: val,
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+
+    try {
+      const loginUrl = 'http://streamapi.com:3000/auth/login';
+
+      const response = await fetch(loginUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: auth.email, password: auth.password }),
       });
-      const [loading, setLoading] = useState(false); // New loading state
-      const navigate = useNavigate();
-    
-      function handleChange(evt) {
-        const { name, value, type, checked } = evt.target;
-        const val = type === "checkbox" ? checked : value; // Xử lý trường hợp checkbox
-        setAuth({
-          ...auth,
-          [name]: val,
-        });
-      }
-    
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-        setLoading(true); // Set loading to true when starting the authentication process
-    
-        try {
-          // Simulate an asynchronous authentication process (you will replace this with your actual authentication logic)
-          await new Promise((resolve) => setTimeout(resolve, 2000));
-    
-          if (auth.email === 'admin' && auth.password === 'admin') {
-            localStorage.setItem('auth', true);
-            if (auth.rememberMe) {
-              localStorage.setItem('email', auth.email);
-            } else {
-              localStorage.removeItem('email');
-            }
-            navigate('/');
-          } else {
-            localStorage.setItem('auth', false);
-          }
-        } catch (error) {
-          console.error('Authentication failed:', error);
-        } finally {
-          setLoading(false); // Set loading to false after authentication is complete (success or failure)
+
+      const responseData = await response.json();
+
+      if (response.ok) {
+        const accessToken = responseData.access_token;
+
+        localStorage.setItem('auth', true);
+        localStorage.setItem('accessToken', accessToken);
+
+        if (auth.rememberMe) {
+          localStorage.setItem('email', auth.email);
+        } else {
+          localStorage.removeItem('email');
         }
-      };
+
+        navigate('/');
+      } else {
+        localStorage.setItem('auth', false);
+        console.error('Login failed. Server response:', responseData);
+        alert('Sai tên tài khoản hoặc mật khẩu');
+
+        // You might want to display an error message to the user based on responseData
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="relative h-full w-full bg-bgImage bg-no-repeat bg-center bg-fixed bg-cover">
