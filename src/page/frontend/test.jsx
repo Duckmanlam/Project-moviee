@@ -1,56 +1,60 @@
 import { useState } from 'react';
+import axios from 'axios';
 
 const Test = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleLogin = async () => {
+  // Xử lý sự kiện khi người dùng chọn file
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0]);
+  };
+
+  // Xử lý sự kiện khi người dùng nhấn nút để đăng tải file
+  const handleFileUpload = async () => {
     try {
-      // Update the API endpoint
-      const loginUrl = `http://streamapi.com:3000/auth/login`;
+      if (!selectedFile) {
+        console.error('Vui lòng chọn một file để đăng tải.');
+        return;
+      }
 
-      const response = await fetch(loginUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
+      setLoading(true); // Set loading state to true
+
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+
+      console.log('Request Payload:', formData);
+      console.log('Request Headers:', {
+        'Content-Type': 'multipart/form-data',
       });
 
-      const responseData = await response.json();
+      // Gửi yêu cầu POST sử dụng axios
+      const response = await axios.post('https://streamapi.com:3000/list-model/upload', formData, {
+        withCredentials: true,
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
 
-      if (response.ok) {
-        const accessToken = responseData.access_token;
-
-        // Store token in localStorage
-        localStorage.setItem('accessToken', accessToken);
-
-        console.log('Access Token:', accessToken);
-
-        // Redirect the user to another page after successful login
-        // Replace '/home' with the desired path
-        window.location.href = '/';
-      } else {
-        console.error('Login failed. Server response:', responseData);
-        // You might want to display an error message to the user based on responseData
-      }
+      // Xử lý phản hồi từ API (response.data chứa dữ liệu từ server)
+      console.log('File đã được đăng tải thành công:', response.data);
     } catch (error) {
-      console.error('Error during login:', error);
+      // Xử lý lỗi nếu có
+      console.error('Lỗi khi đăng tải file:', error);
+      if (error.response) {
+        console.error('Response Data:', error.response.data);
+      }
+    } finally {
+      setLoading(false); // Set loading state back to false, whether successful or not
     }
   };
 
   return (
     <div>
-      <h2>Login</h2>
-      <label>Email:
-        <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
-      </label>
-      <br />
-      <label>Password:
-        <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-      </label>
-      <br />
-      <button onClick={handleLogin}>Login</button>
+      <input type="file" onChange={handleFileChange} />
+      <button onClick={handleFileUpload} disabled={loading}>
+        {loading ? 'Đang tải...' : 'Đăng tải File'}
+      </button>
     </div>
   );
 };
