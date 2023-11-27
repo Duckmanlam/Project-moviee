@@ -5,7 +5,7 @@ const MovieAdmin = () => {
   const [movieData, setMovieData] = useState([]);
   const movieApiUrl = `http://streamapi.com:3000/list-model`;
   const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage] = useState(4);
+  const [itemsPerPage] = useState(5);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -35,15 +35,15 @@ const MovieAdmin = () => {
     console.log(`Edit clicked for movie with ID: ${id}`);
     // Example using react-router-dom for navigation
     // Replace with your preferred navigation method
-    history.push(`/edit-movie/${id}`);
-  };
+    history.push(`http://streamapi.com:3000/list-model/addMovie${id}`);
+  }; 
 
   const handleDeleteClick = async (id) => {
     try {
       // Call the API to delete the movie
       const bearerToken = localStorage.getItem("accessToken");
       await axios.delete(
-        `http://streamapi.com:3000/list-model/deleteListMovie/${id}`,
+        `http://streamapi.com:3000/list-model?id=6564bfbe456b7596627ddb7e`,
         {
           headers: {
             Authorization: `Bearer ${bearerToken}`,

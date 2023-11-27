@@ -1,102 +1,78 @@
+import { useState, useEffect } from "react";
 import axios from "axios";
-import React from "react";
+import ReactPlayer from "react-player";
 
-function DetailProduct () {
-  const [data, setData] = React.useState([]);
+export default function MoreInfo() {
+  const [video, setVideo] = useState({});
+  const movieApiUrl = "http://streamapi.com:3000/detail-movie?id=656170e3c44dbd18639e0624";
 
-  const getApi = async () => {
-    try {
-      const response = await axios.get(
-        "https://streamapi.com:3000/list-model/"
-      );
-      setData(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const bearerToken = localStorage.getItem("accessToken");
+        const response = await axios.get(movieApiUrl, {
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+            "Content-Type": "application/json",
+          },
+        });
 
-  React.useEffect(() => {
-    getApi();
-  }, []);
+        console.log("API Response:", response);
+
+        if (response.data && response.data.success && response.data.result) {
+          setVideo(response.data.result);
+        } else {
+          console.error("Invalid API response:", response);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, [movieApiUrl]);
+
 
   return (
-    <div className="ml-10 h-full overflow-y-scroll">
-      {Object.keys(data).length > 0 ? (
-        <>
-          <div className="flex">
-            <div className="text-40 mt-5 font-semibold capitalize">{data.title}</div>
-            <div className="mt-16 ml-auto mr-16">
-              ...
+    <div>
+      <div className="">
+        {Object.keys(video).length > 0 && (
+          <ReactPlayer
+            url={video.movieLink}
+            playing
+            loop
+            muted
+            width="100%"
+            height="100%"
+            style={{ objectFit: "cover", filter: "brightness(60%)" }}
+          />
+        )}
+        <div>
+          {video && Object.keys(video).length > 0 ? (
+            <div key={video.id} className="mt-10">
+              <div className="">
+                <div className="group text-18">
+                  <div className="flex">
+                  <p className="group-hover:text-yellow-700 text-32 line-clamp-2 dark:text-black">
+                    {video.title}
+                  </p>
+                  </div>
+                  <p className="">
+                    MpaRating: {video.mpaRatings}
+                  </p>
+                  <p className="">
+                    Genres: {video.genre.map((genre) => genre.name).join(', ')}
+                  </p>
+                  <p className="">{video.content}</p>
+                  
+                </div>
+              </div>
             </div>
-          </div>
-          <div className=" flex text-black font-medium text-16 mt-5 -mr-36">
-            <p className="mr-52">Jun. 11, 2023</p>
-            <p className="mr-52 ml-28">Duration: {data.duration} m</p>
-            <p className="mr-52">Addition Date: {data.additionDate}</p>
-          </div>
-          <div className="flex mt-5">
-            <img
-              className="mr-20 w-80 h-96 rounded-2xl"
-              src="http://streamapi.com/images/638297944819637094.png"
-              alt="poster"
-            ></img>
-            <p className="mx-10 mr-56 mt-16 text-Grayscale60">{data.content}</p>
-          </div>
-          <iframe
-            className="rounded-2xl mt-16"
-            width="1095"
-            height="456"
-            src="http://streamapi.com/movies/638297944819668307.mp4"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
-          <div className="mb-7">
-            <div className="mt-16 mb-3 font-semibold">Genres </div>
-            <ul className="flex">
-              {data.genre.map((genre) => (
-                <li className="mr-3 text-Grayscale60" key={genre.id}>
-                  {genre.name}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="mt-5 mb-7">
-            <p className="font-semibold mb-3">Language</p>
-            <p className="text-Grayscale60">Vietamese, English</p>
-          </div>
-          <div className="mt-5 mb-7">
-            <p className="font-semibold mb-3">Country</p>
-            <p className="text-Grayscale60">{data.country}</p>
-          </div>
-          <div className="mt-5 mb-7">
-            <p className="font-semibold mb-3">Language</p>
-            <p className="text-Grayscale60">American</p>
-          </div>
-          <div className="flex">
-            <div className="mb-5 flex">
-              <p className="font-semibold mr-7">Like</p>
-              <p className="text-Grayscale60 mr-20">20</p>
-            </div>
-            <div className="mb-5 flex">
-              <p className="font-semibold mr-7">Rating</p>
-              <p className="text-Grayscale60 mr-20">{data.rating} (45 votes)</p>
-            </div>
-            <div className=" mb-5 flex">
-              <p className="font-semibold mr-7">View</p>
-              <p className="text-Grayscale60 mr-20">{data.view}</p>
-            </div>
-            <div className=" mb-5 flex">
-              <p className="font-semibold mr-7">MPA Ratings</p>
-              <p className="text-Grayscale60 mr-20">{data.mpaRatings}</p>
-            </div>
-          </div>
-        </>
-      ) : (
-        <p>No data available.</p>
-      )}
+          ) : (
+            <p>No movies available.</p>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
-
-export default DetailProduct;
