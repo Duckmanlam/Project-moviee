@@ -7,7 +7,7 @@ const Test = () => {
   const handleLogin = async () => {
     try {
       // Update the API endpoint
-      const loginUrl = `http://streamapi.com:3000/auth/login`;
+      const loginUrl = `http://vanlanggo.com:3000/auth/login`;
 
       const response = await fetch(loginUrl, {
         method: 'POST',
