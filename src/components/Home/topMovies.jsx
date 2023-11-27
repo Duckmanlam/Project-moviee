@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 export default function TopMovies() {
   const [movieData, setMovieData] = useState([]);
-  const movieApiUrl = 'http://streamapi.com:3000/home';
+  const movieApiUrl = 'http://vanlanggo.com:3000/home';
 
   useEffect(() => {
     const fetchData = async () => {
