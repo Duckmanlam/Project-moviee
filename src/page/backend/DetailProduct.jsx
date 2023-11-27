@@ -3,7 +3,7 @@ import axios from "axios";
 import ReactPlayer from "react-player";
 
 export default function MoreInfo() {
-  const [video, setVideo] = useState({});
+  const [detail, setDetail] = useState({});
   const movieApiUrl = "http://streamapi.com:3000/detail-movie?id=656170e3c44dbd18639e0624";
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function MoreInfo() {
         console.log("API Response:", response);
 
         if (response.data && response.data.success && response.data.result) {
-          setVideo(response.data.result);
+          setDetail(response.data.result);
         } else {
           console.error("Invalid API response:", response);
         }
@@ -36,9 +36,9 @@ export default function MoreInfo() {
   return (
     <div>
       <div className="">
-        {Object.keys(video).length > 0 && (
+        {Object.keys(detail).length > 0 && (
           <ReactPlayer
-            url={video.movieLink}
+            url={detail.movieLink}
             playing
             loop
             muted
@@ -48,23 +48,33 @@ export default function MoreInfo() {
           />
         )}
         <div>
-          {video && Object.keys(video).length > 0 ? (
-            <div key={video.id} className="mt-10">
+          {detail && Object.keys(detail).length > 0 ? (
+            <div key={detail.id} className="mt-10">
               <div className="">
                 <div className="group text-18">
                   <div className="flex">
+                  <img
+                    src={detail.posterImage}
+                    alt="img"
+                    className="mb-5 w-full h-40 bg-center ml-auto mr-auto block object-cover rounded-xl border"
+                  />
                   <p className="group-hover:text-yellow-700 text-32 line-clamp-2 dark:text-black">
-                    {video.title}
+                    {detail.title}
                   </p>
                   </div>
                   <p className="">
-                    MpaRating: {video.mpaRatings}
+                    MpaRating: {detail.mpaRatings}
                   </p>
                   <p className="">
-                    Genres: {video.genre.map((genre) => genre.name).join(', ')}
+                    Genres: {detail.genre.map((genre) => genre.name).join(', ')}
                   </p>
-                  <p className="">{video.content}</p>
-                  
+                  <p className="">
+                  Language: {detail.language.map((language) => language.title).join(', ')}
+                  </p>
+                  <p className="">{detail.content}</p>
+                  <p className="">{detail.additionDate}</p>
+                  <p className="">{detail.like}</p>
+                
                 </div>
               </div>
             </div>
