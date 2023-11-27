@@ -30,31 +30,44 @@ const MovieAdmin = () => {
     fetchData();
   }, [movieApiUrl]);
 
-  const handleEditClick = (movieId) => {
+  const handleEditClick = (id) => {
     // Redirect or navigate to the edit page with the movie ID
-    console.log(`Edit clicked for movie with ID: ${movieId}`);
+    console.log(`Edit clicked for movie with ID: ${id}`);
     // Example using react-router-dom for navigation
     // Replace with your preferred navigation method
-    history.push(`/edit-movie/${movieId}`);
+    history.push(`/edit-movie/${id}`);
   };
 
-  const handleDeleteClick = async (movieId) => {
+  const handleDeleteClick = async (id) => {
     try {
       // Call the API to delete the movie
       const bearerToken = localStorage.getItem("accessToken");
-      await axios.delete(`http://streamapi.com:3000/list-model/${movieId}`, {
-        headers: {
-          Authorization: `Bearer ${bearerToken}`,
-          "Content-Type": "application/json",
+      await axios.delete(
+        `http://streamapi.com:3000/list-model/deleteListMovie/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+            "Content-Type": "application/json",
+          },
         },
-      });
+      );
 
       // Update the movieData state after successful deletion
-      setMovieData((prevData) => prevData.filter((movie) => movie.id !== movieId));
+      setMovieData((prevData) =>
+        prevData.filter((movie) => movie.id !== id),
+      );
 
-      console.log(`Delete successful for movie with ID: ${movieId}`);
+      console.log(`Delete successful for movie with ID: ${id}`);
     } catch (error) {
+      // Log the error details
       console.error("Error deleting movie:", error);
+
+      // Check if the error has a response
+      if (error.response) {
+        console.error("Response data:", error.response.data);
+        console.error("Response status:", error.response.status);
+        console.error("Response headers:", error.response.headers);
+      }
     }
   };
 
