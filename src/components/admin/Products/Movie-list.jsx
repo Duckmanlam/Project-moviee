@@ -3,7 +3,7 @@ import axios from "axios";
 
 const MovieAdmin = () => {
   const [movieData, setMovieData] = useState([]);
-  const movieApiUrl = `http://vanlanggo.com:3000/list-model`;
+  const movieApiUrl = `http://streamapi.com:3000/list-model`;
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(4);
 
@@ -43,7 +43,7 @@ const MovieAdmin = () => {
       // Call the API to delete the movie
       const bearerToken = localStorage.getItem("accessToken");
       await axios.delete(
-        `http://vanlanggo.com:3000/list-model/deleteListMovie/${id}`,
+        `http://streamapi.com:3000/list-model/deleteListMovie/${id}`,
         {
           headers: {
             Authorization: `Bearer ${bearerToken}`,
@@ -155,10 +155,11 @@ const MovieAdmin = () => {
               <li
                 key={index}
                 onClick={() => paginate(index + 1)}
-                className={`cursor-pointer px-3 py-2 ${currentPage === index + 1
+                className={`cursor-pointer px-3 py-2 ${
+                  currentPage === index + 1
                     ? "bg-blue-500 text-white"
                     : "bg-gray-300"
-                  }`}
+                }`}
               >
                 {index + 1}
               </li>

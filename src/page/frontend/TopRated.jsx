@@ -112,7 +112,7 @@ const movies = [
 ];
 const MovieList = () => {
   const [movieData, setMovieData] = useState([]);
-  const movieApiUrl = `http://vanlanggo.com:3000/list-model`;
+  const movieApiUrl = `http://streamapi.com:3000/list-model`;
   useEffect(() => {
     const fetchData = async () => {
       try {

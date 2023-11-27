@@ -4,7 +4,7 @@ import ReactPlayer from "react-player";
 
 export default function MoreInfo() {
   const [video, setVideo] = useState({});
-  const movieApiUrl = "http://vanlanggo.com:3000/videoplay?id=656170e3c44dbd18639e0624";
+  const movieApiUrl = "http://streamapi.com:3000/videoplay?id=656170e3c44dbd18639e0624";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -57,15 +57,15 @@ export default function MoreInfo() {
               <div className="">
                 <div className="group text-18">
                   <div className="flex">
-                    <p className="group-hover:text-yellow-700 text-32 line-clamp-2 dark:text-black">
-                      {video.title}
-                    </p>
-                    <button
-                      className="bg-yellow-700 ml-auto px-6 py-2 rounded-md text-white"
-                      onClick={handleShare}
-                    >
-                      Share
-                    </button>
+                  <p className="group-hover:text-yellow-700 text-32 line-clamp-2 dark:text-black">
+                    {video.title}
+                  </p>
+                  <button
+                    className="bg-yellow-700 ml-auto px-6 py-2 rounded-md text-white"
+                    onClick={handleShare}
+                  >
+                    Share
+                  </button>
                   </div>
                   <p className="">
                     MpaRating: {video.mpaRatings}
@@ -74,7 +74,7 @@ export default function MoreInfo() {
                     Genres: {video.genre.map((genre) => genre.name).join(', ')}
                   </p>
                   <p className="">{video.content}</p>
-
+                  
                 </div>
               </div>
             </div>

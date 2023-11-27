@@ -4,7 +4,7 @@ import axios from 'axios';
 
 export default function Banner() {
   const [banner, setBanner] = useState([]);
-  const movieApiUrl = 'http://vanlanggo.com:3000/home';
+  const movieApiUrl = 'http://streamapi.com:3000/home';
 
   useEffect(() => {
     const fetchData = async () => {
