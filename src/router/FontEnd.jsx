@@ -14,7 +14,7 @@ import {
 } from "../page/frontend";
 import { LayoutMain, IndexLayout } from "../layout";
 import Auth from "../page/auth/Login";
-import Register from "../page/auth/Register";
+import Register from "../page/auth/register";
 import NewMovie from "../page/frontend/NewMovie";
 
 export default function RouteFontEnd() {
