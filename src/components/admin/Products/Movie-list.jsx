@@ -3,7 +3,7 @@ import axios from "axios";
 
 const MovieAdmin = () => {
   const [movieData, setMovieData] = useState([]);
-  const movieApiUrl = `http://streamapi.com:3000/list-model`;
+  const movieApiUrl = `http://vanlanggo.com:3000/list-model`;
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
 
@@ -35,15 +35,15 @@ const MovieAdmin = () => {
     console.log(`Edit clicked for movie with ID: ${id}`);
     // Example using react-router-dom for navigation
     // Replace with your preferred navigation method
-    history.push(`http://streamapi.com:3000/list-model/addMovie${id}`);
-  }; 
+    history.push(`http://vanlanggo.com:3000/list-model/addMovie${id}`);
+  };
 
   const handleDeleteClick = async (id) => {
     try {
       // Call the API to delete the movie
       const bearerToken = localStorage.getItem("accessToken");
       await axios.delete(
-        `http://streamapi.com:3000/list-model?id=656368db9b610686e4789ea2`,
+        `http://vanlanggo.com:3000/list-model?id=656368db9b610686e4789ea2`,
         {
           headers: {
             Authorization: `Bearer ${bearerToken}`,
@@ -155,11 +155,10 @@ const MovieAdmin = () => {
               <li
                 key={index}
                 onClick={() => paginate(index + 1)}
-                className={`cursor-pointer px-3 py-2 ${
-                  currentPage === index + 1
+                className={`cursor-pointer px-3 py-2 ${currentPage === index + 1
                     ? "bg-blue-500 text-white"
                     : "bg-gray-300"
-                }`}
+                  }`}
               >
                 {index + 1}
               </li>

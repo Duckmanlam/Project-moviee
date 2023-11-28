@@ -7,7 +7,7 @@ import 'tailwindcss/tailwind.css';
 
 export default function TopMovies() {
   const [history, setHistory] = useState([]);
-  const movieApiUrl = 'http://streamapi.com:3000/home';
+  const movieApiUrl = 'http://vanlanggo.com:3000/home';
 
   useEffect(() => {
     const fetchData = async () => {
@@ -48,27 +48,27 @@ export default function TopMovies() {
           {history.map((history) => (
             <SwiperSlide key={history.id} className="relative overflow-hidden">
               <div key={history.id} className="mt-6">
-            <div className="hover:scale-110 duration-100 ml-4">
-              <Link
-                to="/video"
-                className="rounded-md group object-center "
-              >
-                <img
-                  src={history.posterImage}
-                  alt="img"
-                  className="mb-3 w-36 h-24 bg-center block object-cover rounded-xl border"
-                />
-                <div>
-                  <p className="group-hover:text-yellow-700 sm:text-18 line-clamp-2 dark:text-yellow-700 ">
-                    {history.title}
-                  </p>
-                  <p className="group-hover:text-orange-300 dark:text-yellow-700">
-                    Genres: {history.genre.map((genre) => genre.name).join(', ')}
-                  </p>
+                <div className="hover:scale-110 duration-100 ml-4">
+                  <Link
+                    to="/video"
+                    className="rounded-md group object-center "
+                  >
+                    <img
+                      src={history.posterImage}
+                      alt="img"
+                      className="mb-3 w-36 h-24 bg-center block object-cover rounded-xl border"
+                    />
+                    <div>
+                      <p className="group-hover:text-yellow-700 sm:text-18 line-clamp-2 dark:text-yellow-700 ">
+                        {history.title}
+                      </p>
+                      <p className="group-hover:text-orange-300 dark:text-yellow-700">
+                        Genres: {history.genre.map((genre) => genre.name).join(', ')}
+                      </p>
+                    </div>
+                  </Link>
                 </div>
-              </Link>
-            </div>
-          </div>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>

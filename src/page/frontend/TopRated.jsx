@@ -8,7 +8,7 @@ const MovieList = () => {
   const [movieTop, setMovieTop] = useState([]);
   const [hoveredMovieId, setHoveredMovieId] = useState(false);
 
-  const movieApiUrl = `http://streamapi.com:3000/top-rated`;
+  const movieApiUrl = `http://vanlanggo.com:3000/top-rated`;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -45,65 +45,64 @@ const MovieList = () => {
           Top Rated
         </p>
         <div className="object-contain">
-        <Swiper
-          spaceBetween={10}
-          slidesPerView={6}
-          onSlideChange={() => console.log("slide change")}
-          onSwiper={(swiper) => console.log(swiper)}
-        >
-          {movieTop.map((top) => (
-            <SwiperSlide key={top.id} className="swiper-slide">
-              <div
-                className={`relative ${
-                  hoveredMovieId === top.id
-                    ? "hover:scale-110 duration-100"
-                    : ""
-                } duration-200`}
-                onMouseEnter={() => {
-                  setHoveredMovieId(top.id);
-                }}
-                onMouseLeave={() => {
-                  setHoveredMovieId(null);
-                }}
-              >
-                <div className="ml-5">
-                <a
-                  href="/video"
-                  className="py-1 items-center space-x-4 rounded-md group"
+          <Swiper
+            spaceBetween={10}
+            slidesPerView={6}
+            onSlideChange={() => console.log("slide change")}
+            onSwiper={(swiper) => console.log(swiper)}
+          >
+            {movieTop.map((top) => (
+              <SwiperSlide key={top.id} className="swiper-slide">
+                <div
+                  className={`relative ${hoveredMovieId === top.id
+                      ? "hover:scale-110 duration-100"
+                      : ""
+                    } duration-200`}
+                  onMouseEnter={() => {
+                    setHoveredMovieId(top.id);
+                  }}
+                  onMouseLeave={() => {
+                    setHoveredMovieId(null);
+                  }}
                 >
-                  <img
-                    src={top.posterImage}
-                    alt="img"
-                    className="w-60 h-40 bg-center ml-auto mr-auto block"
-                  />
-                  {hoveredMovieId === top.id && (
-                    <div className="absolute top-0 left-0 grid rounded-xl bg-center max-w-7xl shadow-sm bg-slate-200 p-5">
+                  <div className="ml-5">
+                    <a
+                      href="/video"
+                      className="py-1 items-center space-x-4 rounded-md group"
+                    >
                       <img
-                    src={top.posterImage}
-                    alt="img"
-                    className="w-20 h-8 object-cover"
-                  />
-                  <div className="text-12">
-                      <p className="font-bold text-14 dark:text-black">
-                        {top.title}
-                      </p>
-                      <p className="">
-                        Average Rating: {top.averageRating}
-                      </p>
-                      <p className="">
-                        Genres:{" "}
-                        {top.genre.map((genre) => genre.name).join(", ")}
-                      </p>
-                      <p>{top.mpaRatings}</p>
-                      </div>
-                    </div>
-                  )}
-                </a>
+                        src={top.posterImage}
+                        alt="img"
+                        className="w-60 h-40 bg-center ml-auto mr-auto block"
+                      />
+                      {hoveredMovieId === top.id && (
+                        <div className="absolute top-0 left-0 grid rounded-xl bg-center max-w-7xl shadow-sm bg-slate-200 p-5">
+                          <img
+                            src={top.posterImage}
+                            alt="img"
+                            className="w-20 h-8 object-cover"
+                          />
+                          <div className="text-12">
+                            <p className="font-bold text-14 dark:text-black">
+                              {top.title}
+                            </p>
+                            <p className="">
+                              Average Rating: {top.averageRating}
+                            </p>
+                            <p className="">
+                              Genres:{" "}
+                              {top.genre.map((genre) => genre.name).join(", ")}
+                            </p>
+                            <p>{top.mpaRatings}</p>
+                          </div>
+                        </div>
+                      )}
+                    </a>
+                  </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+              </SwiperSlide>
+            ))}
+          </Swiper>
         </div>
       </div>
       <div className="absolute top-64 z-10 w-full h-full rounded-lg shadow-lg">

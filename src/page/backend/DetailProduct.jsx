@@ -4,7 +4,7 @@ import ReactPlayer from "react-player";
 
 export default function MoreInfo() {
   const [detail, setDetail] = useState({});
-  const movieApiUrl = "http://streamapi.com:3000/detail-movie?id=656170e3c44dbd18639e0624";
+  const movieApiUrl = "http://vanlanggo.com:3000/detail-movie?id=656170e3c44dbd18639e0624";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -53,14 +53,14 @@ export default function MoreInfo() {
               <div className="">
                 <div className="group text-18">
                   <div className="flex">
-                  <img
-                    src={detail.posterImage}
-                    alt="img"
-                    className="mb-5 w-full h-40 bg-center ml-auto mr-auto block object-cover rounded-xl border"
-                  />
-                  <p className="group-hover:text-yellow-700 text-32 line-clamp-2 dark:text-black">
-                    {detail.title}
-                  </p>
+                    <img
+                      src={detail.posterImage}
+                      alt="img"
+                      className="mb-5 w-full h-40 bg-center ml-auto mr-auto block object-cover rounded-xl border"
+                    />
+                    <p className="group-hover:text-yellow-700 text-32 line-clamp-2 dark:text-black">
+                      {detail.title}
+                    </p>
                   </div>
                   <p className="">
                     MpaRating: {detail.mpaRatings}
@@ -69,12 +69,12 @@ export default function MoreInfo() {
                     Genres: {detail.genre.map((genre) => genre.name).join(', ')}
                   </p>
                   <p className="">
-                  Language: {detail.language.map((language) => language.title).join(', ')}
+                    Language: {detail.language.map((language) => language.title).join(', ')}
                   </p>
                   <p className="">{detail.content}</p>
                   <p className="">{detail.additionDate}</p>
                   <p className="">{detail.like}</p>
-                
+
                 </div>
               </div>
             </div>
