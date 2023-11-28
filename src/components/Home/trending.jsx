@@ -50,7 +50,7 @@ export default function TopMovies() {
               <div key={history.id} className="mt-6">
             <div className="hover:scale-110 duration-100 ml-4">
               <Link
-                to="/video"
+                to={`/video/${history.id}`}
                 className="rounded-md group object-center "
               >
                 <img
