@@ -49,13 +49,13 @@ export default function TopMovies() {
                   className="mb-3 w-36 h-24 bg-center block object-cover rounded-xl border"
                 />
                 <div>
-                  <p className="group-hover:text-yellow-700 sm:text-18 line-clamp-2 dark:text-black">
+                  <p className="group-hover:text-yellow-700 sm:text-18 line-clamp-2  dark:text-yellow-500">
                     {movie.title}
                   </p>
-                  <p className="group-hover:text-orange-300">
+                  <p className="group-hover:text-orange-300 dark:text-yellow-500 ">
                     Average Rating: {movie.averageRating}
                   </p>
-                  <p className="group-hover:text-orange-300">
+                  <p className="group-hover:text-orange-300 dark:text-yellow-500  ">
                     Genres: {movie.genre.map((genre) => genre.name).join(', ')}
                   </p>
                 </div>

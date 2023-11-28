@@ -126,16 +126,16 @@ const MovieList = () => {
                   <img
                     src={movie.posterImage}
                     alt="img"
-                    className="mb-5 w-full h-40 bg-center ml-auto mr-auto block object-cover rounded-xl border"
+                    className="mb-5 w-full h-40 bg-center ml-auto mr-auto block object-cover rounded-xl border dark:text-Grayscale70"
                   />
                   <div>
-                    <p className="group-hover:text-yellow-700 font-bold sm:text-xl line-clamp-2 dark:text-black">
+                    <p className="group-hover:text-yellow-700 font-bold sm:text-xl line-clamp-2 dark:text-Grayscale70">
                       {movie.title}
                     </p>
-                    <p className="group-hover:text-orange-300">
+                    <p className="group-hover:text-orange-300 dark:text-Grayscale70">
                       Average Rating: {movie.averageRating}
                     </p>
-                    <p className="group-hover:text-orange-300">
+                    <p className="group-hover:text-orange-300 ">
                       Genres:{" "}
                       {movie.genre.map((genre) => genre.name).join(", ")}
                     </p>
