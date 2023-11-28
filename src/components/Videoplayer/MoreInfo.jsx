@@ -7,7 +7,7 @@ export default function MoreInfo() {
   const [rating, setRating] = useState(0);
   const [liked, setLiked] = useState(false); // Added state for liking
 
-  const movieApiUrl = "http://streamapi.com:3000/videoplay?id=656170e3c44dbd18639e0624";
+  const movieApiUrl = `http://streamapi.com:3000/videoplay?id=${video.id}`;
 
   useEffect(() => {
     const fetchData = async () => {
@@ -80,10 +80,14 @@ export default function MoreInfo() {
   
       if (response.data) {
         if (response.data.result) {
-          setVideo(response.data.result);
+          setVideo((prevVideo) => ({
+            ...prevVideo,
+            likes: response.data.result.likes, // Assuming the API response includes the updated like count
+          }));
           setLiked(true);
         } else {
-          console.error("Invalid like response - Missing 'result' field:", response.data);
+          // If 'result' field is missing, still update liked state
+          setLiked(true);
         }
       } else {
         console.error("Invalid like response - Empty data:", response);
@@ -92,7 +96,6 @@ export default function MoreInfo() {
       console.error("Error liking video:", error);
     }
   };
-  
 
 
   return (
