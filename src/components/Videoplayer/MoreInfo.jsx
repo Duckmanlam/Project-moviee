@@ -66,8 +66,6 @@ export default function MoreInfo() {
     }
   };
 
-  // Function to handle video like
-  // Function to handle video like
   const handleLike = async () => {
     try {
       const bearerToken = localStorage.getItem("accessToken");
@@ -81,7 +79,6 @@ export default function MoreInfo() {
       console.log("Like response:", response.data);
   
       if (response.data) {
-        // Check if the response contains updated video data
         if (response.data.result) {
           setVideo(response.data.result);
           setLiked(true);

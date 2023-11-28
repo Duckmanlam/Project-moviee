@@ -43,7 +43,7 @@ const MovieAdmin = () => {
       // Call the API to delete the movie
       const bearerToken = localStorage.getItem("accessToken");
       await axios.delete(
-        `http://streamapi.com:3000/list-model?id=6564bfbe456b7596627ddb7e`,
+        `http://streamapi.com:3000/list-model?id=656368db9b610686e4789ea2`,
         {
           headers: {
             Authorization: `Bearer ${bearerToken}`,

@@ -48,7 +48,7 @@ export default function TopMovies() {
           {history.map((history) => (
             <SwiperSlide key={history.id} className="relative overflow-hidden">
               <div key={history.id} className="mt-6">
-            <div className="hover:scale-110 duration-200">
+            <div className="hover:scale-110 duration-100 ml-4">
               <Link
                 to="/video"
                 className="rounded-md group object-center "

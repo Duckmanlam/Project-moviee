@@ -1,133 +1,35 @@
-import MovieCard from "../../components/Movie/MovieCard";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
-const movies = [
-  {
-    number: 1,
-    title: "The Shawshank...",
-    drama: "Drama",
-    imageUrl:
-      "https://lh3.google.com/u/0/d/1--5cr-u711fXVPCWNhnOKS9khoRkKFAT=w2939-h1531-iv1",
-    start: "9.2",
-    imgstart:
-      "https://lh3.google.com/u/0/d/1_BxjM_nMxIhMT0pJByy1ErL090ReiP7u=w2939-h1216-iv1",
-    imgtype:
-      "https://lh3.google.com/u/0/d/1AP7SNnuiEl_oXA7cZq14wxWnUWQ3sgD3=w2939-h1034-iv1",
-    play: "	https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
-  },
-  {
-    number: 2,
-    title: "The Godfather",
-    drama: "Crime • Drama",
-    imageUrl:
-      "	https://lh3.google.com/u/0/d/1DmKMdSQJHcVmflT-SpVp0O3a73A6iwED=w2000-h1538-iv1",
-    start: "9.2",
-    imgstart:
-      "https://lh3.google.com/u/0/d/1_BxjM_nMxIhMT0pJByy1ErL090ReiP7u=w2939-h1216-iv1",
-    imgtype:
-      "https://lh3.google.com/u/0/d/1AP7SNnuiEl_oXA7cZq14wxWnUWQ3sgD3=w2939-h1034-iv1",
-    play: "	https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
-  },
-  {
-    number: 3,
-    title: "The Dark Knight",
-    drama: "Action • Crime",
-    imageUrl:
-      "	https://lh3.google.com/u/0/d/1Q9tk61ZaOCSwa10Llt9FUXSOrGas-Na5=w724-h558-iv1",
-    start: "9.0",
-    imgstart:
-      "https://lh3.google.com/u/0/d/1_BxjM_nMxIhMT0pJByy1ErL090ReiP7u=w2939-h1216-iv1",
-    imgtype:
-      "https://lh3.google.com/u/0/d/1AP7SNnuiEl_oXA7cZq14wxWnUWQ3sgD3=w2939-h1034-iv1",
-    play: "	https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
-  },
-  {
-    number: 4,
-    title: "The Shawshank...",
-    drama: "Drama",
-    imageUrl:
-      "https://lh3.google.com/u/0/d/1qUmmr4g4h9JyPJbYv2sYeZ6DsjYs4lBX=w2000-h1538-iv1",
-    start: "9.2",
-    imgstart:
-      "https://lh3.google.com/u/0/d/1_BxjM_nMxIhMT0pJByy1ErL090ReiP7u=w2939-h1216-iv1",
-    imgtype:
-      "https://lh3.google.com/u/0/d/1AP7SNnuiEl_oXA7cZq14wxWnUWQ3sgD3=w2939-h1034-iv1",
-    play: "	https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
-  },
-  {
-    number: 5,
-    title: "The Godfather",
-    drama: "Crime • Drama",
-    imageUrl:
-      "https://lh3.google.com/u/0/d/1xWHx6BXmT03rfnu-F-Ln2KwOEiFdltxq=w2000-h1538-iv1",
-    start: "9.2",
-    imgstart:
-      "https://lh3.google.com/u/0/d/1_BxjM_nMxIhMT0pJByy1ErL090ReiP7u=w2939-h1216-iv1",
-    imgtype:
-      "https://lh3.google.com/u/0/d/1AP7SNnuiEl_oXA7cZq14wxWnUWQ3sgD3=w2939-h1034-iv1",
-    play: "	https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
-  },
-  {
-    number: 6,
-    title: "The Dark Knight",
-    drama: "Action • Crime",
-    imageUrl:
-      "	https://lh3.google.com/u/0/d/1QLSw7ilmSnd-yEYFNaQSKtsPVkw4qjxN=w2000-h1538-iv1",
-    start: "9.0",
-    imgstart:
-      "https://lh3.google.com/u/0/d/1_BxjM_nMxIhMT0pJByy1ErL090ReiP7u=w2939-h1216-iv1",
-    imgtype:
-      "https://lh3.google.com/u/0/d/1AP7SNnuiEl_oXA7cZq14wxWnUWQ3sgD3=w2939-h1034-iv1",
-    play: "	https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
-  },
-  {
-    number: 7,
-    title: "The Godfather",
-    drama: "Crime • Drama",
-    imageUrl:
-      "https://lh3.google.com/u/0/d/1xWHx6BXmT03rfnu-F-Ln2KwOEiFdltxq=w2000-h1538-iv1",
-    start: "9.2",
-    imgstart:
-      "https://lh3.google.com/u/0/d/1_BxjM_nMxIhMT0pJByy1ErL090ReiP7u=w2939-h1216-iv1",
-    imgtype:
-      "https://lh3.google.com/u/0/d/1AP7SNnuiEl_oXA7cZq14wxWnUWQ3sgD3=w2939-h1034-iv1",
-    play: "	https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
-  },
-  {
-    number: 8,
-    title: "The Dark Knight",
-    drama: "Action • Crime",
-    imageUrl:
-      "	https://lh3.google.com/u/0/d/1QLSw7ilmSnd-yEYFNaQSKtsPVkw4qjxN=w2000-h1538-iv1",
-    start: "9.0",
-    imgstart:
-      "https://lh3.google.com/u/0/d/1_BxjM_nMxIhMT0pJByy1ErL090ReiP7u=w2939-h1216-iv1",
-    imgtype:
-      "https://lh3.google.com/u/0/d/1AP7SNnuiEl_oXA7cZq14wxWnUWQ3sgD3=w2939-h1034-iv1",
-    play: "	https://lh3.google.com/u/0/d/1PlL3L095DasiNMeDL2znZclADRfSSFYH=w2939-h1531-iv1",
-  },
-];
 const MovieList = () => {
   const [movieData, setMovieData] = useState([]);
-  const movieApiUrl = `http://streamapi.com:3000/list-model`;
+  const [movieTop, setMovieTop] = useState([]);
+  const [hoveredMovieId, setHoveredMovieId] = useState(false);
+
+  const movieApiUrl = `http://streamapi.com:3000/top-rated`;
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Retrieve the Bearer token from localStorage
         const bearerToken = localStorage.getItem("accessToken");
-
         const response = await axios.get(movieApiUrl, {
           headers: {
             Authorization: `Bearer ${bearerToken}`,
-            "Content-Type": "application/json", // Adjust content type if needed
+            "Content-Type": "application/json",
           },
         });
 
-        setMovieData(response.data.data);
-        console.log(movieData);
+        console.log("API Response:", response);
+
+        if (response.data && response.data.success && response.data.result) {
+          // Assuming 'getMovieHomeDTO' and 'ratingDTOHome' are properties of the response
+          setMovieData(response.data.result.getMovieHomeDTO);
+          setMovieTop(response.data.result.ratingDTOHome);
+        } else {
+          console.error("Invalid API response:", response);
+        }
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -135,40 +37,74 @@ const MovieList = () => {
 
     fetchData();
   }, [movieApiUrl]);
+
   return (
     <div className="relative">
       <div className="absolute top-0 z-20 w-full h-full rounded-lg shadow-lg">
         <p className="ml-8 mb-5 mt-1 text-24 font-bold dark:text-Grayscale70">
           Top Rated
         </p>
+        <div className="object-contain">
         <Swiper
           spaceBetween={10}
           slidesPerView={6}
           onSlideChange={() => console.log("slide change")}
           onSwiper={(swiper) => console.log(swiper)}
         >
-          {movies.map((movie, index) => (
-            <SwiperSlide key={index} className="swiper-slide">
-              <div className="m-4">
+          {movieTop.map((top) => (
+            <SwiperSlide key={top.id} className="swiper-slide">
+              <div
+                className={`relative ${
+                  hoveredMovieId === top.id
+                    ? "hover:scale-110 duration-100"
+                    : ""
+                } duration-200`}
+                onMouseEnter={() => {
+                  setHoveredMovieId(top.id);
+                }}
+                onMouseLeave={() => {
+                  setHoveredMovieId(null);
+                }}
+              >
+                <div className="ml-5">
                 <a
                   href="/video"
-                  className=" py-1 flex items-center space-x-4 rounded-md  group"
+                  className="py-1 items-center space-x-4 rounded-md group"
                 >
-                  <MovieCard
-                    number={movie.number}
-                    title={movie.title}
-                    drama={movie.drama}
-                    imageUrl={movie.imageUrl}
-                    start={movie.start}
-                    imgstart={movie.imgstart}
-                    imgtype={movie.imgtype}
-                    play={movie.play}
+                  <img
+                    src={top.posterImage}
+                    alt="img"
+                    className="w-60 h-40 bg-center ml-auto mr-auto block"
                   />
+                  {hoveredMovieId === top.id && (
+                    <div className="absolute top-0 left-0 grid rounded-xl bg-center max-w-7xl shadow-sm bg-slate-200 p-5">
+                      <img
+                    src={top.posterImage}
+                    alt="img"
+                    className="w-20 h-8 object-cover"
+                  />
+                  <div className="text-12">
+                      <p className="font-bold text-14 dark:text-black">
+                        {top.title}
+                      </p>
+                      <p className="">
+                        Average Rating: {top.averageRating}
+                      </p>
+                      <p className="">
+                        Genres:{" "}
+                        {top.genre.map((genre) => genre.name).join(", ")}
+                      </p>
+                      <p>{top.mpaRatings}</p>
+                      </div>
+                    </div>
+                  )}
                 </a>
+                </div>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
+        </div>
       </div>
       <div className="absolute top-64 z-10 w-full h-full rounded-lg shadow-lg">
         <p className="ml-8 mt-10 text-24 font-bold dark:text-Grayscale70">
