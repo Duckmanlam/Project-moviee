@@ -26,7 +26,7 @@ export default function RouteFontEnd() {
         <Route path="/edit" element={<EditProfile />} />
         <Route path="/data" element={<Data />} />
         <Route path="/pass" element={<Password />} />
-        <Route path="/video/:id" element={<VideoPlayer />} />
+        <Route path="/video" element={<VideoPlayer />} />
         <Route path="/new" element={<NewMovie/>} />
       </Route>
 
