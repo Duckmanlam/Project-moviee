@@ -6,12 +6,10 @@ import RouteBackend from "./router/Backend.jsx";
 import RouteFontEnd from "./router/FontEnd.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-  <React.StrictMode>
-    <Router>
-      <div className="bg-white dark:bg-mainDark">
-        <RouteBackend />
-        <RouteFontEnd />
-      </div>
-    </Router>
-  </React.StrictMode>,
+  <Router>
+    <div className="min-h-screen bg-white dark:bg-mainDark transition-colors  overflow-y-auto pb-10">
+      <RouteBackend />
+      <RouteFontEnd />
+    </div>
+  </Router>,
 );

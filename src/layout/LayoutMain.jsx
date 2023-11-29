@@ -1,22 +1,22 @@
-import  { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
-import Header from '../components/Header';
-import Sidebar from '../components/SideBar';
-import { Outlet } from 'react-router-dom';
+import Header from "../components/Header";
+import Sidebar from "../components/SideBar";
+import { Outlet } from "react-router-dom";
 
 export default function Layoutmain() {
   const navigate = useNavigate();
-  const accessToken = localStorage.getItem('accessToken');
+  const accessToken = localStorage.getItem("accessToken");
 
   useEffect(() => {
     if (!accessToken) {
-      navigate('/login');
+      navigate("/login");
     }
   }, [accessToken, navigate]);
 
   if (!accessToken) {
-    return null; // Ngăn chặn việc render phần còn lại của component
+    return null;
   }
 
   return (

@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import {
   Homepage,
   Sub,
@@ -8,7 +8,6 @@ import {
   Success,
   EditProfile,
   VideoPlayer,
-
   TopRated,
   Test,
 } from "../page/frontend";
@@ -17,22 +16,47 @@ import Auth from "../page/auth/Login";
 import Register from "../page/auth/register";
 import NewMovie from "../page/frontend/NewMovie";
 
+const PrivateRoute = ({ element, path }) => {
+  const isAuthenticated = localStorage.getItem("accessToken") !== null;
+  return isAuthenticated ? (
+    element
+  ) : (
+    <Navigate to="/login" replace state={{ from: path }} />
+  );
+};
+
 export default function RouteFontEnd() {
   return (
     <Routes>
       <Route element={<LayoutMain />}>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/toprated" element={<TopRated />} />
-        <Route path="/edit" element={<EditProfile />} />
-        <Route path="/data" element={<Data />} />
-        <Route path="/pass" element={<Password />} />
-<<<<<<< Updated upstream
-        <Route path="/video" element={<VideoPlayer />} />
-        <Route path="/new" element={<NewMovie />} />
-=======
-        <Route path="/video/:id" element={<VideoPlayer />} />
-        <Route path="/new" element={<NewMovie/>} />
->>>>>>> Stashed changes
+        <Route
+          path="/"
+          element={<PrivateRoute element={<Homepage />} path="/" />}
+        />
+        <Route
+          path="/toprated"
+          element={<PrivateRoute element={<TopRated />} path="/toprated" />}
+        />
+        <Route
+          path="/edit"
+          element={<PrivateRoute element={<EditProfile />} path="/edit" />}
+        />
+        <Route
+          path="/data"
+          element={<PrivateRoute element={<Data />} path="/data" />}
+        />
+        <Route
+          path="/pass"
+          element={<PrivateRoute element={<Password />} path="/pass" />}
+        />
+        <Route
+          path="/video"
+          element={<PrivateRoute element={<VideoPlayer />} path="/video" />}
+        />
+        <Route
+          path="/new"
+          element={<PrivateRoute element={<NewMovie />} path="/new" />}
+        />
       </Route>
 
       <Route element={<IndexLayout />}>
@@ -42,7 +66,6 @@ export default function RouteFontEnd() {
         <Route path="/test" element={<Test />} />
         <Route path="/login" element={<Auth />} />
         <Route path="/register" element={<Register />} />
-
       </Route>
     </Routes>
   );

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import axiosClient from "../../../API/ClientAxios";
 
 const MovieAdmin = () => {
   const [movieData, setMovieData] = useState([]);
@@ -10,15 +11,7 @@ const MovieAdmin = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Retrieve the Bearer token from localStorage
-        const bearerToken = localStorage.getItem("accessToken");
-
-        const response = await axios.get(movieApiUrl, {
-          headers: {
-            Authorization: `Bearer ${bearerToken}`,
-            "Content-Type": "application/json", // Adjust content type if needed
-          },
-        });
+        const response = await axiosClient.get("list-model");
 
         setMovieData(response.data.data);
         console.log(movieData);
@@ -36,7 +29,7 @@ const MovieAdmin = () => {
     // Example using react-router-dom for navigation
     // Replace with your preferred navigation method
     history.push(`http://streamapi.com:3000/list-model/addMovie${id}`);
-  }; 
+  };
 
   const handleDeleteClick = async (id) => {
     try {
@@ -53,9 +46,7 @@ const MovieAdmin = () => {
       );
 
       // Update the movieData state after successful deletion
-      setMovieData((prevData) =>
-        prevData.filter((movie) => movie.id !== id),
-      );
+      setMovieData((prevData) => prevData.filter((movie) => movie.id !== id));
 
       console.log(`Delete successful for movie with ID: ${id}`);
     } catch (error) {

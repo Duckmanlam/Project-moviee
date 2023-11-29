@@ -1,15 +1,22 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleInfoClick = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
   return (
-    <nav className="bg-white border-gray-200 dark:bg-mainDark">
+    <nav className="bg-white border-gray-200 dark:bg-mainDark transition-colors ">
       <div className=" flex flex-wrap items-center justify-between mx-auto p-4">
         <Link
           to="/"
@@ -19,9 +26,7 @@ export default function Navbar() {
         </Link>
 
         <div className="flex items-center md:order-2 relative">
-          <div>
-            
-          </div>
+          <div></div>
           <button
             type="button"
             className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
@@ -57,12 +62,12 @@ export default function Navbar() {
             </div>
             <ul className="py-2" aria-labelledby="user-menu-button">
               <li>
-                <Link
-                  to="/login"
+                <div
+                  onClick={() => handleLogout()}
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
                 >
                   Sign out
-                </Link>
+                </div>
               </li>
             </ul>
           </div>
@@ -76,9 +81,7 @@ export default function Navbar() {
             role="button"
           ></button>
         </div>
-        <div>
-          
-        </div>
+        <div></div>
         {/*
         <div
           className="items-center justify-between hidden w-full md:flex md:w-auto "
@@ -119,16 +122,12 @@ export default function Navbar() {
             </li>
           </ul>
         </div> */}
-        
+
         <div
           className="items-center justify-between hidden w-full md:flex md:w-auto "
           id="navbar-user"
-        >
-         
-        </div>
-        <div>
-          
-        </div>
+        ></div>
+        <div></div>
       </div>
     </nav>
   );

@@ -1,53 +1,40 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
 import axios from "axios";
-// import ReactPlayer from "react-player";
+import ReactPlayer from "react-player";
+import axiosClient from "../../API/ClientAxios";
 
 export default function MoreInfo() {
-  const { id } = useParams();
   const [video, setVideo] = useState({});
+  const movieApiUrl =
+    "http://streamapi.com:3000/videoplay?id=656170e3c44dbd18639e0624";
 
   useEffect(() => {
-    const fetchVideoDetails = async () => {
-      try {
-        const bearerToken = localStorage.getItem("accessToken");
-        const response = await axios.get(
-          `http://streamapi.com:3000/detail-movie?id=${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${bearerToken}`,
-              "Content-Type": "application/json",
-            },
-          },
-        );
-
-        if (response.data) {
-          setVideo(response.data);
-        } else {
-          console.error("Invalid API response:", response);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
+    const fetchData = async () => {
+      // try {
+      //   const response = await axiosClient.get(movieApiUrl);
+      //   console.log("API Response:", response);
+      //   if (response.data && response.data.success && response.data.result) {
+      //     setVideo(response.data.result);
+      //   } else {
+      //     console.error("Invalid API response:", response);
+      //   }
+      // } catch (error) {
+      //   console.error("Error fetching data:", error);
+      // }
     };
 
-    fetchVideoDetails();
-  }, [id]);
+    fetchData();
+  }, [movieApiUrl]);
 
-  // const handleShare = () => {
-  //   // Placeholder function for sharing
-  //   console.log("Sharing video:", video.title);
-  // };
+  const handleShare = () => {
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${video.movieLink}`;
+    window.open(facebookUrl, "_blank");
+  };
 
   return (
     <div>
       <div className="">
-        {/* {video?.movieLink ? (
-          <video width="320" height="240" controls>
-            <source src={video?.movieLink} type="video/mp4" />
-          </video>
-        ) : null} */}
-        {/* {Object.keys(video).length > 0 && (
+        {Object.keys(video).length > 0 && (
           <ReactPlayer
             url={video.movieLink}
             playing
@@ -59,7 +46,7 @@ export default function MoreInfo() {
           />
         )}
         <div>
-          {Object.keys(video).length > 0 && (
+          {video && Object.keys(video).length > 0 ? (
             <div key={video.id} className="mt-10">
               <div className="">
                 <div className="group text-18">
@@ -82,8 +69,10 @@ export default function MoreInfo() {
                 </div>
               </div>
             </div>
+          ) : (
+            <p>No movies available.</p>
           )}
-        </div> */}
+        </div>
       </div>
     </div>
   );
