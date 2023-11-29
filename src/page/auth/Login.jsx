@@ -56,7 +56,6 @@ const Auth = () => {
         console.error('Login failed. Server response:', responseData);
         alert('Sai tên tài khoản hoặc mật khẩu');
 
-        // You might want to display an error message to the user based on responseData
       }
     } catch (error) {
       console.error('Error during login:', error);

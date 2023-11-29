@@ -35,6 +35,8 @@ const MovieAdmin = () => {
     history.push(`http://streamapi.com:3000/list-model/addMovie${id}`);
   }; 
 
+
+  
   //Delete
   const handleDeleteClick = async (id) => {
     try {

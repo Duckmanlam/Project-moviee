@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: "http://vanlanggo.com:3000",
+  baseURL: "http://streamapi.com:3000",
   timeout: 30000,
   headers: {
     "content-type": "application/json",
@@ -33,7 +33,7 @@ axiosClient.interceptors.response.use(
   (err) => {
     // Handle error
     // console.log(err);
-    window.location.href = "/login";
+    //window.location.href = "/login";
     return Promise.reject(err);
   },
 );

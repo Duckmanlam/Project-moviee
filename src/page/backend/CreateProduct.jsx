@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-import Select from "react-select";
 
 function CreateProduct() {
   const [files, setFiles] = useState([]);
@@ -12,16 +11,16 @@ function CreateProduct() {
     mpaRatings: "",
     content: "",
     country: "",
-    genre: [],
-    language: "",
+    genre: { name: '' },
+    language: { title: '' },
   });
-
-  const handleChange = (e) => {
-    setFiles(e.target.files);
-  };
 
   const handleMovieChange = (e) => {
     setMovie(e.target.files[0]);
+  };
+
+  const handleImageChange = (e) => {
+    setFiles(e.target.files[0]);
   };
 
   const handleData = (e) => {
@@ -31,22 +30,41 @@ function CreateProduct() {
       [name]: value,
     }));
   };
-  const handleGenreChange = (selectedOptions) => {
-    const genres = selectedOptions.map((option) => option.value);
-    setData((prevData) => ({
-      ...prevData,
-      genre: genres,
-    }));
+  const handleGenreChange = (e) => {
+    // Assuming you have a way to update the genre state object
+    setData({ ...data, genre: { name: e.target.value } });
+  };
+
+  const handleLanguage = (e) => {
+    // Assuming you have a way to update the genre state object
+    setData({ ...data, language: { title: e.target.value } });
   };
 
   const handleUpload = async (e) => {
     e.preventDefault();
+
+    const {
+      title,
+      releaseYear,
+      duration,
+      mpaRatings,
+      content,
+      country,
+      genre,
+      language,
+    } = data;
+
     const formData = new FormData();
-    for (let i = 0; i < files.length; i++) {
-      formData.append(`posterImage`, files[i]);
-    }
+    formData.append(`posterImage`, files);
     formData.append(`movieUrl`, movie);
-    formData.append("jsonData", data);
+    formData.append("title", title);
+    formData.append("releaseYear", releaseYear);
+    formData.append("duration", duration);
+    formData.append("mpaRatings", mpaRatings);
+    formData.append("content", content);
+    formData.append("country", country);
+    formData.append(`genre[0][name]`, genre.name);
+    formData.append(`language[0][title]`, language.title);
 
     const bearerToken = localStorage.getItem("accessToken");
     console.log(formData);
@@ -60,32 +78,28 @@ function CreateProduct() {
             Authorization: `Bearer ${bearerToken}`,
             "Content-Type": "multipart/form-data",
           },
-        }
+        },
       );
-    
+
       console.log(response.data);
     } catch (error) {
       console.error("Error during create:", error.response.data);
     }
   };
 
-
-
-
-
   return (
     <div>
       <form onSubmit={handleUpload} className="grid grid-cols-1 gap-6">
         <label>
           Poster:
-          <input type="file" multiple onChange={handleChange} />
+          <input type="file" multiple onChange={handleImageChange} />
         </label>
 
         <label>
           Movie:
           <input type="file" onChange={handleMovieChange} />
         </label>
-        <label> 
+        <label>
           Title:
           <input
             type="text"
@@ -135,26 +149,13 @@ function CreateProduct() {
           />
         </label>
         <label>
-          Genre:
-          <Select
-            isMulti
-            name="genre"
-            options={[
-              { value: "Action", label: "Action" },
-              { value: "Drama", label: "Drama" },
-            ]}
-            onChange={handleGenreChange}
-          />
-        </label>
-        <label>
-          Language:
-          <input
-            type="text"
-            name="language"
-            value={data?.language}
-            onChange={handleData}
-          />
-        </label>
+        Genre:
+        <input type="text" value={data.genre.name} onChange={handleGenreChange} />
+      </label>
+      <label>
+        Language:
+        <input type="text" value={data.language.name} onChange={handleLanguage} />
+      </label>
 
         <button type="submit">Submit</button>
       </form>

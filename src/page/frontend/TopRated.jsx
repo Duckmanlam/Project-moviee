@@ -2,11 +2,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const MovieList = () => {
   const [movieData, setMovieData] = useState([]);
   const [movieTop, setMovieTop] = useState([]);
   const [hoveredMovieId, setHoveredMovieId] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(""); 
 
   const movieApiUrl = `http://streamapi.com:3000/top-rated`;
 
@@ -19,12 +21,14 @@ const MovieList = () => {
             Authorization: `Bearer ${bearerToken}`,
             "Content-Type": "application/json",
           },
+          params: {
+            searchQuery: searchQuery,
+          },
         });
 
         console.log("API Response:", response);
 
         if (response.data && response.data.success && response.data.result) {
-          // Assuming 'getMovieHomeDTO' and 'ratingDTOHome' are properties of the response
           setMovieData(response.data.result.getMovieHomeDTO);
           setMovieTop(response.data.result.ratingDTOHome);
         } else {
@@ -36,9 +40,18 @@ const MovieList = () => {
     };
 
     fetchData();
-  }, [movieApiUrl]);
+  }, [movieApiUrl, searchQuery]);
 
   return (
+    <div>
+  <input
+  type="text"
+  placeholder="Search movies..."
+  value={searchQuery}
+  onChange={(e) => setSearchQuery(e.target.value)}
+  className="p-2 mb-4 max-w-xs w-full ml-8"
+/>
+
     <div className="relative">
       <div className="absolute top-0 z-20 w-full h-full rounded-lg shadow-lg">
         <p className="ml-8 mb-5 mt-1 text-24 font-bold dark:text-Grayscale70">
@@ -119,8 +132,8 @@ const MovieList = () => {
           {movieData.map((movie) => (
             <SwiperSlide key={movie.id} className="swiper-slide">
               <div className="m-4 relative hover:scale-110 duration-200">
-                <a
-                  href="/video"
+                <Link
+                  to={`/video/${movie.id}`}
                   className="py-1 items-center space-x-4 rounded-md group"
                 >
                   <img
@@ -129,23 +142,24 @@ const MovieList = () => {
                     className="mb-5 w-full h-40 bg-center ml-auto mr-auto block object-cover rounded-xl border"
                   />
                   <div>
-                    <p className="group-hover:text-yellow-700 font-bold sm:text-xl line-clamp-2 dark:text-black">
+                    <p className="group-hover:text-yellow-700 font-bold sm:text-xl line-clamp-2 dark:text-Grayscale10">
                       {movie.title}
                     </p>
-                    <p className="group-hover:text-orange-300">
+                    <p className="group-hover:text-orange-300 dark:text-Grayscale10">
                       Average Rating: {movie.averageRating}
                     </p>
-                    <p className="group-hover:text-orange-300">
+                    <p className="group-hover:text-orange-300 dark:text-Grayscale10">
                       Genres:{" "}
                       {movie.genre.map((genre) => genre.name).join(", ")}
                     </p>
                   </div>
-                </a>
+                </Link>
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
+    </div>
     </div>
   );
 };

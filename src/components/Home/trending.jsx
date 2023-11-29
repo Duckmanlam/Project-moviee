@@ -36,7 +36,7 @@ export default function TopMovies() {
   }, [movieApiUrl]);
 
   return (
-    <div>
+    <div className='max-h-56 mt-80'>
       <h1 className="text-20-700 dark:text-Grayscale10">Watching History</h1>
       {history && history.length > 0 ? (
         <Swiper
@@ -50,7 +50,7 @@ export default function TopMovies() {
               <div key={historyItem.id} className="mt-6">
                 <div className="hover:scale-110 duration-100 ml-4">
                   <Link
-                    to={`/video/${historyItem.id}`} // Specify the route to the video page with the corresponding id
+                     to={`/video/${historyItem.id}`}
                     className="rounded-md group object-center "
                   >
                     <img
@@ -59,10 +59,10 @@ export default function TopMovies() {
                       className="mb-3 w-36 h-24 bg-center block object-cover rounded-xl border"
                     />
                     <div>
-                      <p className="group-hover:text-yellow-700 sm:text-18 line-clamp-2 dark:text-black">
+                      <p className="group-hover:text-yellow-700 sm:text-18 line-clamp-2 dark:text-white">
                         {historyItem.title}
                       </p>
-                      <p className="group-hover:text-orange-300">
+                      <p className="group-hover:text-orange-300 dark:text-white">
                         Genres: {historyItem.genre.map((genre) => genre.name).join(', ')}
                       </p>
                     </div>

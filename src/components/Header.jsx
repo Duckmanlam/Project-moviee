@@ -17,11 +17,7 @@ export default function Navbar() {
         >
           Cinemax
         </Link>
-
         <div className="flex items-center md:order-2 relative">
-          <div>
-            
-          </div>
           <button
             type="button"
             className="flex mr-3 text-sm bg-gray-800 rounded-full md:mr-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
@@ -124,10 +120,8 @@ export default function Navbar() {
           className="items-center justify-between hidden w-full md:flex md:w-auto "
           id="navbar-user"
         >
-         
         </div>
         <div>
-          
         </div>
       </div>
     </nav>
