@@ -50,7 +50,7 @@ export default function TopMovies() {
               <div key={history.id} className="mt-6">
             <div className="hover:scale-110 duration-100 ml-4">
               <Link
-                to="/video"
+                to={`/video/${history.id}`}
                 className="rounded-md group object-center "
               >
                 <img
@@ -59,10 +59,10 @@ export default function TopMovies() {
                   className="mb-3 w-36 h-24 bg-center block object-cover rounded-xl border"
                 />
                 <div>
-                  <p className="group-hover:text-yellow-700 sm:text-18 line-clamp-2 dark:text-yellow-700 ">
+                  <p className="group-hover:text-yellow-700 sm:text-18 line-clamp-2 dark:text-black">
                     {history.title}
                   </p>
-                  <p className="group-hover:text-orange-300 dark:text-yellow-700">
+                  <p className="group-hover:text-orange-300">
                     Genres: {history.genre.map((genre) => genre.name).join(', ')}
                   </p>
                 </div>

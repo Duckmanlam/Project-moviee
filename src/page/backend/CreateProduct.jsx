@@ -3,7 +3,6 @@ import { useDropzone } from "react-dropzone";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
-import { Link } from 'react-router-dom';
 
 
 export default function CreateProduct() {
@@ -11,9 +10,6 @@ export default function CreateProduct() {
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [selectedDate, setSelectedDate] = useState(null);
 
-  
-
-  
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setSelectedImage(URL.createObjectURL(file));
@@ -246,11 +242,25 @@ export default function CreateProduct() {
         </select>
 
         {/* Submit button */}
-        <div>
-        <Link to="/product">
-        <button  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Posts</button>
-      </Link>
+        <div className="">
+          <div>
+            <div className="flex">
+              <div>
+                <a
+                  href="/"
+                  className="py-1 flex items-center space-x-4 rounded-md group"
+                >
+                  <button
+                    className="ml-20 mt-10 text-white text-14 bg-violet-700 font-medium rounded-lg text-sm py-3 px-8 mr-2 mb-2"
+                    type="submit"
+                  >
+                    Create
+                  </button>
+                </a>
+              </div>
+            </div>
           </div>
+        </div>
       </form>
     </div>
   );

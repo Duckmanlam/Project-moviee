@@ -1,26 +1,28 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import ReactPlayer from "react-player";
+// import ReactPlayer from "react-player";
 
 export default function MoreInfo() {
+  const { id } = useParams();
   const [video, setVideo] = useState({});
-  const movieApiUrl = "http://streamapi.com:3000/videoplay?id=656170e3c44dbd18639e0624";
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchVideoDetails = async () => {
       try {
         const bearerToken = localStorage.getItem("accessToken");
-        const response = await axios.get(movieApiUrl, {
-          headers: {
-            Authorization: `Bearer ${bearerToken}`,
-            "Content-Type": "application/json",
+        const response = await axios.get(
+          `http://streamapi.com:3000/detail-movie?id=${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${bearerToken}`,
+              "Content-Type": "application/json",
+            },
           },
-        });
+        );
 
-        console.log("API Response:", response);
-
-        if (response.data && response.data.success && response.data.result) {
-          setVideo(response.data.result);
+        if (response.data) {
+          setVideo(response.data);
         } else {
           console.error("Invalid API response:", response);
         }
@@ -29,18 +31,23 @@ export default function MoreInfo() {
       }
     };
 
-    fetchData();
-  }, [movieApiUrl]);
+    fetchVideoDetails();
+  }, [id]);
 
-  const handleShare = () => {
-    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${video.movieLink}`;
-    window.open(facebookUrl, "_blank");
-  };
+  // const handleShare = () => {
+  //   // Placeholder function for sharing
+  //   console.log("Sharing video:", video.title);
+  // };
 
   return (
     <div>
       <div className="">
-        {Object.keys(video).length > 0 && (
+        {/* {video?.movieLink ? (
+          <video width="320" height="240" controls>
+            <source src={video?.movieLink} type="video/mp4" />
+          </video>
+        ) : null} */}
+        {/* {Object.keys(video).length > 0 && (
           <ReactPlayer
             url={video.movieLink}
             playing
@@ -52,36 +59,31 @@ export default function MoreInfo() {
           />
         )}
         <div>
-          {video && Object.keys(video).length > 0 ? (
+          {Object.keys(video).length > 0 && (
             <div key={video.id} className="mt-10">
               <div className="">
                 <div className="group text-18">
                   <div className="flex">
-                  <p className="group-hover:text-yellow-700 text-32 line-clamp-2 dark:text-black">
-                    {video.title}
-                  </p>
-                  <button
-                    className="bg-yellow-700 ml-auto px-6 py-2 rounded-md text-white"
-                    onClick={handleShare}
-                  >
-                    Share
-                  </button>
+                    <p className="group-hover:text-yellow-700 text-32 line-clamp-2 dark:text-black">
+                      {video.title}
+                    </p>
+                    <button
+                      className="bg-yellow-700 ml-auto px-6 py-2 rounded-md text-white"
+                      onClick={handleShare}
+                    >
+                      Share
+                    </button>
                   </div>
+                  <p className="">MpaRating: {video.mpaRatings}</p>
                   <p className="">
-                    MpaRating: {video.mpaRatings}
-                  </p>
-                  <p className="">
-                    Genres: {video.genre.map((genre) => genre.name).join(', ')}
+                    Genres: {video.genre.map((genre) => genre.name).join(", ")}
                   </p>
                   <p className="">{video.content}</p>
-                  
                 </div>
               </div>
             </div>
-          ) : (
-            <p>No movies available.</p>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );
