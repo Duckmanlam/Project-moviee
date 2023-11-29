@@ -1,14 +1,23 @@
 import { useState, useEffect } from "react";
+import axios from "axios";
 import ReactPlayer from "react-player";
-import axiosClient from '../../API/ClientAxios'
 
 export default function MoreInfo() {
   const [detail, setDetail] = useState({});
+  const movieApiUrl = "http://streamapi.com:3000/detail-movie?id=656170e3c44dbd18639e0624";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosClient.get(`/detail-movie?id=656170e3c44dbd18639e0624`);
+        const bearerToken = localStorage.getItem("accessToken");
+        const response = await axios.get(movieApiUrl, {
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+            "Content-Type": "application/json",
+          },
+        });
+
+        console.log("API Response:", response);
 
         if (response.data && response.data.success && response.data.result) {
           setDetail(response.data.result);

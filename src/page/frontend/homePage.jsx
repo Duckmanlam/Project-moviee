@@ -6,16 +6,18 @@ export default function Homepage() {
   return (
     <div className="ml-8 grid grid-cols-3 gap-4 mt-4 ">
       <div className="col-span-2  ">
-        <div className="min-h-[25rem]">
+        <div>
           <Banner />
+          
         </div>
         <div className="mt-4">
-          <Trending />
+         <Trending/>
         </div>
       </div>
       <div className="col-span-1 ml-8 ">
-        <Topmovies />
+        <Topmovies/>
       </div>
     </div>
   );
 }
+ 
