@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const MovieAdmin = () => {
   const [movieData, setMovieData] = useState([]);
@@ -10,13 +11,11 @@ const MovieAdmin = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Retrieve the Bearer token from localStorage
         const bearerToken = localStorage.getItem("accessToken");
-
         const response = await axios.get(movieApiUrl, {
           headers: {
             Authorization: `Bearer ${bearerToken}`,
-            "Content-Type": "application/json", // Adjust content type if needed
+            "Content-Type": "application/json",
           },
         });
 
@@ -30,48 +29,41 @@ const MovieAdmin = () => {
     fetchData();
   }, [movieApiUrl]);
 
+  //Edit
   const handleEditClick = (id) => {
-    // Redirect or navigate to the edit page with the movie ID
     console.log(`Edit clicked for movie with ID: ${id}`);
-    // Example using react-router-dom for navigation
-    // Replace with your preferred navigation method
     history.push(`http://streamapi.com:3000/list-model/addMovie${id}`);
   }; 
 
+  //Delete
   const handleDeleteClick = async (id) => {
     try {
-      // Call the API to delete the movie
       const bearerToken = localStorage.getItem("accessToken");
-      await axios.delete(
-        `http://streamapi.com:3000/list-model?id=656368db9b610686e4789ea2`,
-        {
+      const confirmDelete = window.confirm("Bạn có chắn muốn xoá không?");
+
+      if (confirmDelete) {
+        await axios.delete(`http://streamapi.com:3000/list-model?id=${id}`, {
           headers: {
             Authorization: `Bearer ${bearerToken}`,
             "Content-Type": "application/json",
           },
-        },
-      );
+        });
+        console.log(`Delete successful for movie with ID: ${id}`);
 
-      // Update the movieData state after successful deletion
-      setMovieData((prevData) =>
-        prevData.filter((movie) => movie.id !== id),
-      );
-
-      console.log(`Delete successful for movie with ID: ${id}`);
-    } catch (error) {
-      // Log the error details
-      console.error("Error deleting movie:", error);
-
-      // Check if the error has a response
-      if (error.response) {
-        console.error("Response data:", error.response.data);
-        console.error("Response status:", error.response.status);
-        console.error("Response headers:", error.response.headers);
+        const updatedData = await axios.get(`http://streamapi.com:3000/list-model`, {
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+            "Content-Type": "application/json",
+          },
+        });
+        setMovieData(updatedData.data.data);
       }
+    } catch (error) {
+      console.error("Error deleting movie:", error);
     }
   };
-
-  // Get current items
+ 
+  //page
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = movieData.slice(indexOfFirstItem, indexOfLastItem);
@@ -129,12 +121,14 @@ const MovieAdmin = () => {
                 <td className="px-6 py-4">{`${movie.view} minutes`}</td>
                 <td className="px-6 py-4">{`${movie.like} minutes`}</td>
                 <td className="px-6 py-4">
+                  <Link to ="/create"/>
                   <button
                     onClick={() => handleEditClick(movie.id)}
                     className="bg-blue-500 text-white px-2 py-1 rounded mr-2"
                   >
                     Edit
                   </button>
+                  <Link/>
                   <button
                     onClick={() => handleDeleteClick(movie.id)}
                     className="bg-red-500 text-white px-2 py-1 rounded"

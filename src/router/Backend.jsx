@@ -11,7 +11,7 @@ export default function RouteBackend() {
       <Route element={<AdminLayout />}>
         <Route path="/product" element={<Product />} />
         <Route path="/detail" element={<DetailProduct/>} />
-        <Route path="/create" element={<CreateProduct/>} />
+        <Route path="/create/" element={<CreateProduct/>} />
 
       </Route>
     </Routes>

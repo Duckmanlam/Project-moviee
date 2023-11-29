@@ -8,14 +8,12 @@ import {
   Success,
   EditProfile,
   VideoPlayer,
-  
   TopRated,
   Test,
 } from "../page/frontend";
 import { LayoutMain, IndexLayout } from "../layout";
 import Auth from "../page/auth/Login";
 import Register from "../page/auth/register";
-import NewMovie from "../page/frontend/NewMovie";
 
 export default function RouteFontEnd() {
   return (
@@ -26,8 +24,7 @@ export default function RouteFontEnd() {
         <Route path="/edit" element={<EditProfile />} />
         <Route path="/data" element={<Data />} />
         <Route path="/pass" element={<Password />} />
-        <Route path="/video/:id" element={<VideoPlayer />} />
-        <Route path="/new" element={<NewMovie/>} />
+        <Route path="/video/:id" element={<VideoPlayer/>} />
       </Route>
 
       <Route element={<IndexLayout />}>

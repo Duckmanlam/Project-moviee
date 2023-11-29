@@ -45,30 +45,30 @@ export default function TopMovies() {
           onSlideChange={() => console.log('slide change')}
           onSwiper={(swiper) => console.log(swiper)}
         >
-          {history.map((history) => (
-            <SwiperSlide key={history.id} className="relative overflow-hidden">
-              <div key={history.id} className="mt-6">
-            <div className="hover:scale-110 duration-100 ml-4">
-              <Link
-                to={`/video/${history.id}`}
-                className="rounded-md group object-center "
-              >
-                <img
-                  src={history.posterImage}
-                  alt="img"
-                  className="mb-3 w-36 h-24 bg-center block object-cover rounded-xl border"
-                />
-                <div>
-                  <p className="group-hover:text-yellow-700 sm:text-18 line-clamp-2 dark:text-black">
-                    {history.title}
-                  </p>
-                  <p className="group-hover:text-orange-300">
-                    Genres: {history.genre.map((genre) => genre.name).join(', ')}
-                  </p>
+          {history.map((historyItem) => (
+            <SwiperSlide key={historyItem.id} className="relative overflow-hidden">
+              <div key={historyItem.id} className="mt-6">
+                <div className="hover:scale-110 duration-100 ml-4">
+                  <Link
+                    to={`/video/${historyItem.id}`} // Specify the route to the video page with the corresponding id
+                    className="rounded-md group object-center "
+                  >
+                    <img
+                      src={historyItem.posterImage}
+                      alt="img"
+                      className="mb-3 w-36 h-24 bg-center block object-cover rounded-xl border"
+                    />
+                    <div>
+                      <p className="group-hover:text-yellow-700 sm:text-18 line-clamp-2 dark:text-black">
+                        {historyItem.title}
+                      </p>
+                      <p className="group-hover:text-orange-300">
+                        Genres: {historyItem.genre.map((genre) => genre.name).join(', ')}
+                      </p>
+                    </div>
+                  </Link>
                 </div>
-              </Link>
-            </div>
-          </div>
+              </div>
             </SwiperSlide>
           ))}
         </Swiper>
