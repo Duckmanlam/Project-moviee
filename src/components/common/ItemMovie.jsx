@@ -24,7 +24,7 @@ export const ItemMoview = (props) => {
             slidesPerView: 5,
           },
           1024: {
-            slidesPerView: 6,
+            slidesPerView: props.size ? props.size : 6,
           },
         }}
       >

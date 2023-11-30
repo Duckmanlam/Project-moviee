@@ -1,7 +1,7 @@
 import "swiper/css";
 // import { useState } from "react";
 import { getMovieHomeDTO } from '../../data'
-import { ItemMoview } from "../../components/ItemMovie";
+import { ItemMoview } from "../../components/common/ItemMovie";
 // import { useEffect } from "react";
 // import axiosClient from '../../API/ClientAxios'
 const MovieList = () => {

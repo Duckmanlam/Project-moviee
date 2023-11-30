@@ -38,7 +38,7 @@ export default function Banner() {
             url="https://youtu.be/ygvNCEbMusE"
             playing={true}
             loop={true}
-            muted={false}
+            muted={true}
             width="100%"
             height="560px"
           />
