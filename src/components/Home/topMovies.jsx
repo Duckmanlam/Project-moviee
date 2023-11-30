@@ -12,7 +12,7 @@ export default function TopMovies() {
     const fetchData = async () => {
       try {
         setLoading(true)
-        const response = await axiosClient.get('/home');
+        const response = await axiosClient.get(`http://streamapi.com:3000/home`);
         if (response.success) {
           setMovieData(response.result.ratingDTOHome);
         } else {

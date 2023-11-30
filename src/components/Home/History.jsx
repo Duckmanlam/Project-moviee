@@ -1,25 +1,22 @@
-/* eslint-disable react/prop-types */
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { AiTwotoneStar } from 'react-icons/ai';
-import { BsFillPlayCircleFill } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
-import Skeleton from 'react-loading-skeleton'
-import 'react-loading-skeleton/dist/skeleton.css'
-import { Swiper, SwiperSlide } from "swiper/react";
 import { useState, useEffect } from 'react';
 import axiosClient from '../../API/ClientAxios';
+import { Link } from 'react-router-dom';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'tailwindcss/tailwind.css';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { BsFillPlayCircleFill } from 'react-icons/bs';
+import Skeleton from 'react-loading-skeleton'
 
-export const ItemMoview = (props) => {
-  const [data, setData] = useState([]);
-  // const [hoveredMovieId, setHoveredMovieId] = useState(false);
-  // const [searchQuery, setSearchQuery] = useState("");
+export default function History(props) {
+  const [history, setHistory] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosClient.get('/top-rated');
+        const response = await axiosClient.get('/home');
 
         if (response.success) {
-          setData(response.result.ratingDTOHome);
+          setHistory(response.result.watchingHistoryHome);
         }
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -29,8 +26,7 @@ export const ItemMoview = (props) => {
     fetchData();
   }, []);
 
-
-  if (data.length > 0) {
+  if (history.length > 0) {
     return (
       <Swiper
         spaceBetween={10}
@@ -44,11 +40,12 @@ export const ItemMoview = (props) => {
             slidesPerView: 5,
           },
           1024: {
+            // eslint-disable-next-line react/prop-types
             slidesPerView: props.size ? props.size : 6,
           },
         }}
       >
-        {data?.map((movie) => (
+        {history?.map((movie) => (
           <SwiperSlide key={movie.id}>
             <div className="group card transition-transform duration-300 overflow-hidden rounded-xl aspect-w-2 aspect-h-3 w-full h-80">
               <Link to={`/video/${movie?.id}`} className='w-full h-full relative block'>
@@ -59,10 +56,6 @@ export const ItemMoview = (props) => {
                   alt={movie?.title}
                   src={movie?.posterImage}
                 />
-
-                <div className='absolute top-3 left-0'>
-                  <span className='bg-white/20 px-2 py-1 rounded-md inline-flex items-center ml-2 text-xs font-medium gap-[2px] text-white'>{movie?.averageRating}<AiTwotoneStar className='text-sm text-yellow-500' /></span>
-                </div>
                 <div className='hidden group-hover:flex absolute bottom-0 py-3 left-0 right-0 w-full h-1/2  flex-col justify-end px-3 z-[6]'>
                   <div className='text-white block font-light text-lg group-hover:text-white transition-colors duration-300'>{movie?.title}</div>
                   <div className='flex items-end  text-light-gray text-xs'>
@@ -91,6 +84,4 @@ export const ItemMoview = (props) => {
       </div>
     )
   }
-
-};
-
+}

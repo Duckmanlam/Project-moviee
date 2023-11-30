@@ -1,6 +1,5 @@
 import "swiper/css";
 // import { useState } from "react";
-import { getMovieHomeDTO } from '../../data'
 import { ItemMoview } from "../../components/common/ItemMovie";
 // import { useEffect } from "react";
 // import axiosClient from '../../API/ClientAxios'
@@ -38,13 +37,13 @@ const MovieList = () => {
           <p className="mb-2 text-24 font-bold dark:text-Grayscale70">
             Top Rated
           </p>
-          <ItemMoview data={getMovieHomeDTO} />
+          <ItemMoview/>
         </div>
         <div className="w-full h-full rounded-lg ml-8 ">
           <p className="mb-2 text-24 font-bold dark:text-Grayscale70">
             Best of Action
           </p>
-          <ItemMoview data={getMovieHomeDTO} />
+          <ItemMoview/>
         </div>
       </div>
     </div>

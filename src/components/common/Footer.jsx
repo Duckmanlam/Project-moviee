@@ -41,7 +41,7 @@ const Footer = () => {
               Payment
             </Link>
           </div>
-          <span>© 2023 Movie website sponsored by Team Tech. Copyright of components belongs to their authors.</span>
+          <span>© 2023 Movie website sponsored by Team. Copyright of components belongs to their authors.</span>
         </div>
       </div>
     </div>

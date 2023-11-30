@@ -29,6 +29,7 @@ export default function Router() {
     } else {
       navigate('/login')
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isToken]);
   return (
     <Routes>

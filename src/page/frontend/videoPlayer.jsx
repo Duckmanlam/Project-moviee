@@ -4,9 +4,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axiosClient from "../../API/ClientAxios";
 import axios from "axios";
-import { Player } from "../../components/common/Player";
+// import { Player } from "../../components/common/Player";
 import { ItemMoview } from "../../components/common/ItemMovie";
-import { getMovieHomeDTO } from '../../data'
+// import { getMovieHomeDTO } from '../../data'
 
 export default function VideoPlayer() {
   const { id } = useParams();
@@ -18,7 +18,7 @@ export default function VideoPlayer() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosClient.get(`/videoplay?id=${id}`);
+        const response = await axiosClient.get(`http://streamapi.com:3000/videoplay?id=${id}`);
         if (response.success) {
           setVideo(response.result);
         }
@@ -82,7 +82,9 @@ export default function VideoPlayer() {
           <div className="relative">
             {video ? (
               <>
-                <Player url={video?.movieLink} />
+                <video className="w-full h-96" controls>
+        <source src={video?.movieLink} type="video/mp4" />
+      </video>
                 <div className="flex mt-5 mb-3">
                   <input
                     type="number"
@@ -119,7 +121,6 @@ export default function VideoPlayer() {
             ) : (
               <div>Lỗi video</div>
             )}
-
             <div>
               <p className="text-black text-16 mt-4 drop-shadow-xl dark:text-white">
                 {video.mpaRatings}
@@ -133,7 +134,7 @@ export default function VideoPlayer() {
               <p className="mb-4 text-24 font-bold border-b-4 border-Primary inline-block">
                 More Video
               </p>
-              <ItemMoview data={getMovieHomeDTO} size={5} />
+              <ItemMoview size={5} />
             </div>
           </div>
         </div>
