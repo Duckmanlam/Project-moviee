@@ -5,14 +5,31 @@ import { BiSun, BiMoon } from "react-icons/bi";
 import { searchData } from '../../data'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { AiTwotoneStar } from "react-icons/ai";
+import axiosClient from "../../API/ClientAxios";
 
 
 export default function Navbar() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [dataSearch, setDataSearch] = useState(searchData.splice(0, 4));
+  const [searchQuery, setSearchQuery] = useState("");
 
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axiosClient.get(`list-model?searchQuery=${searchQuery}`);
+        setDataSearch(response.data);
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
+    fetchData();
+  }, [searchQuery]);
   const location = useLocation();
   const navigate = useNavigate();
   const [isTop, setIsTop] = useState(true);
@@ -109,7 +126,7 @@ export default function Navbar() {
 
         <div className="flex items-center  bg-white rounded-lg h-10 relative">
           <div className="w-full">
-            <input onChange={(e) => setSearch(e.target.value)} type="search" className="w-full px-4 py-1 text-gray-800 rounded-full focus:outline-none"
+            <input onChange={handleSearchChange} type="search" className="w-full px-4 py-1 text-gray-800 rounded-full focus:outline-none"
               placeholder="search" />
           </div>
           <div>
@@ -121,9 +138,10 @@ export default function Navbar() {
               </svg>
             </button>
           </div>
-          {dataSearch.length && search && !loading ? <div className="absolute top-full mt-2 h-auto rounded-lg overflow-hidden grid grid-cols-1 divide-y divide-dashed divide-black/10 dark:divide-white/10 w-full bg-lineBlock dark:bg-darkBlock">
+          {dataSearch.length? <div className="absolute top-full mt-2 h-auto rounded-lg overflow-hidden grid grid-cols-1 divide-y divide-dashed divide-black/10 dark:divide-white/10 w-full bg-lineBlock dark:bg-darkBlock">
             {dataSearch.map(item => {
-              return <div key={item.id} className="p-2 flex gap-4">
+              return <Link key={item.id} to={`/video/${item.id}`} className="p-2 flex gap-4">
+                
                 <LazyLoadImage
                   loading='lazy'
                   className='w-20 h-32 rounded'
@@ -135,7 +153,7 @@ export default function Navbar() {
                   <p className="flex items-center gap-2"> {item?.averageRating} <AiTwotoneStar className='text-sm text-yellow-500' /></p>
                   <span className='inline-block text-sm text-white/70 border border-light-gray px-1 py-[2px] rounded ml-auto line-clamp-1 truncate max-w-[8rem]'> {item?.genre.map((genre) => genre.name).join(", ")}</span>
                 </div>
-              </div>
+              </Link>
             })}
           </div> : null}
 
