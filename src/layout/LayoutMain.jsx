@@ -2,10 +2,11 @@ import Header from '../components/common/Header';
 import { SiderBar } from '../components/common/SiderBar';
 import { Outlet, useLocation, useParams } from 'react-router-dom';
 import Footer from '../components/common/Footer';
-
 export default function Layoutmain() {
   const { id } = useParams();
   const location = useLocation();
+
+  
   return (
     <div className='min-h-screen'>
       <Header />

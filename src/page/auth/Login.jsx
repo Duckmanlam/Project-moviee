@@ -34,8 +34,10 @@ const Auth = () => {
         email: auth.email,
         password: auth.password,
       });
-      if (response.access_token) {
-        localStorage.setItem('accessToken', response.access_token);
+      if (response.result.access_token) {
+        localStorage.setItem('accessToken', response.result.access_token);
+        localStorage.setItem('role', response.result.roleId);
+        console.log(response.result.access_token);
         navigate('/');
       }
     } catch (error) {
