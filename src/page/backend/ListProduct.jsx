@@ -7,33 +7,43 @@ export default function ListProduct() {
   const [movieData, setMovieData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
+  const [notification, setNotification] = useState(null);
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axiosClient.get('list-model');
         setMovieData(response.data);
-      } catch (error) {
+        setTimeout(() => {
+          setNotification(null);
+        }, 3000);
+      } 
+      catch (error) {
         console.error("Error fetching data:", error);
+        setNotification("Error deleting item. Please try again.");
       }
     };
 
     fetchData();
   }, []);
 
-
-  //Delete
+  // Delete
   const handleDeleteClick = async (id) => {
     try {
-      const confirmDelete = window.confirm("Bạn có chắn muốn xoá không?");
-
+      const confirmDelete = window.confirm("Are you sure you want to delete?");
+  
       if (confirmDelete) {
         await axiosClient.delete(`/list-model?id=${id}`);
-        const updatedData = await axiosClient.get(`/list-model`);
-        setMovieData(updatedData.data.data);
+        setMovieData((prevData) => prevData.filter(movie => movie.id !== id));
+        setTimeout(() => {
+           setNotification("Item deleted successfully!");
+        }, 2000);
+       
       }
     } catch (error) {
       console.error("Error deleting movie:", error);
+      setNotification("Error deleting item. Please try again.");
     }
   };
 
@@ -46,7 +56,12 @@ export default function ListProduct() {
 
   return (
     <div className="">
-      <h1 className="text-24 mb-6 text-left font-bold">
+      {notification && (
+        <div className="fixed top-10 right-0 m-4 bg-emerald-500 text-white p-2 rounded">
+          {notification}
+        </div>
+      )}
+      <h1 className="text-24 mb-6 text-center font-bold">
         Movie List
       </h1>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -96,8 +111,8 @@ export default function ListProduct() {
                 <td className="px-6 py-4">{movie.title}</td>
                 <td className="px-6 py-4">{movie.MPARatings}</td>
                 <td className="px-6 py-4">{`${movie.duration} minutes`}</td>
-                <td className="px-6 py-4">{`${movie.view} minutes`}</td>
-                <td className="px-6 py-4">{`${movie.like} minutes`}</td>
+                <td className="px-6 py-4">{`${movie.view} `}</td>
+                <td className="px-6 py-4">{`${movie.like} `}</td>
                 <td className="px-6 py-4">
                   <Link to={`/product/update/${movie.id}`} className="bg-blue-500 text-white px-2 py-1 rounded mr-2">Edit</Link>
                   <Link />

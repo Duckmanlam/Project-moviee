@@ -18,6 +18,7 @@ import NotFound from "../page/NotFound";
 import ListProduct from "../page/backend/ListProduct";
 import CreateUpdateProduct from "../page/backend/CreateUpdateProduct";
 import { useEffect } from "react";
+import DetailProduct from "../page/backend/DetailProduct";
 
 export default function Router() {
   const navigate = useNavigate();
@@ -44,6 +45,8 @@ export default function Router() {
         <Route path="/product" element={<ListProduct />} />
         <Route path="/product/create" element={<CreateUpdateProduct />} />
         <Route path="/product/update/:id" element={<CreateUpdateProduct />} />
+        <Route path="/detail" element={<DetailProduct/>} />
+        <Route path="/video/detail/:id" element={<VideoPlayer/>} />
         <Route path="*" element={<NotFound />} />
       </Route>
       <Route element={<IndexLayout />}>

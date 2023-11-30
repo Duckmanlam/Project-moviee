@@ -1,11 +1,14 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect } from "react";
 import axiosClient from "../../API/ClientAxios";
 
 function CreateUpdateProduct() {
   const { id } = useParams();
+  const [notification, setNotification] = useState(null);
+  const navigate = useNavigate();
   const [files, setFiles] = useState([]);
   const [movie, setMovie] = useState("");
   const [data, setData] = useState({
@@ -35,12 +38,10 @@ function CreateUpdateProduct() {
     }));
   };
   const handleGenreChange = (e) => {
-    // Assuming you have a way to update the genre state object
     setData({ ...data, genre: { name: e.target.value } });
   };
 
   const handleLanguage = (e) => {
-    // Assuming you have a way to update the genre state object
     setData({ ...data, language: { title: e.target.value } });
   };
 
@@ -86,6 +87,8 @@ function CreateUpdateProduct() {
       );
 
       console.log(response.data);
+      navigate('/product');
+      setNotification("Item add successfully!");
     } catch (error) {
       console.error("Error during create:", error.response.data);
     }
@@ -107,12 +110,12 @@ function CreateUpdateProduct() {
 
   return (
     <div className="w-full">
-      <h1 className="text-24 mb-6 text-left font-bold">
+      <h1 className="text-24 mb-6 text-center font-bold">
         Create Product
       </h1>
-      <div className="flex gap-4">
+      <div className="flex gap-4 justify-center items-center">
         {/* left */}
-        <div className="rounded-lg bg-[#131313] p-4 w-1/2">
+        <div className="rounded-lg bg-violet-400 p-4 w-5/6">
           <form onSubmit={handleUpload} className="w-full mx-auto grid grid-cols-2 gap-4">
             <div>
               <label htmlFor="poster" className="block text-sm font-medium text-white/70">Poster:</label>
@@ -173,7 +176,7 @@ function CreateUpdateProduct() {
 
             <button
               type="submit"
-              className="col-span-2 bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 transition duration-300 w-full"
+              className="col-span-2 bg-violet-800 text-white p-2 rounded-md hover:bg-violet-600 transition duration-300 w-full"
             >
               Submit
             </button>

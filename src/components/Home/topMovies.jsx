@@ -42,7 +42,7 @@ export default function TopMovies() {
                 <LazyLoadImage
                   src={movie.posterImage}
                   alt="img"
-                  className="group-hover:scale-110 object-cover transition-transform duration-500 rounded-xl w-32 h-auto"
+                  className="group-hover:scale-110 object-center transition-transform duration-500 rounded-xl w-32 h-auto"
                 />
                 <div>
                   <p className="group-hover:text-Primary sm:text-18 line-clamp-2 transition-colors duration-500">

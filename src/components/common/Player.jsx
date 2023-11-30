@@ -9,13 +9,13 @@ export const Player = (props) => {
         url={props?.url}
         controls={props.controls ? props.controls : true}
         width={props.width ? props.width : '100%'}
-        height={props.height ? props.height : '320px'}
+        height={props.height ? props.height : '400px'}
         muted={props.muted ? props.muted : false}
       />
     )
   } else {
     return (
-      <div className={`${props.height ? props.height : 'h-[320px]'} ${props.width ? props.width : 'w-full'} bg-gray-200 flex justify-center items-center`}>
+      <div className={`${props.height ? props.height : 'h-[400px]'} ${props.width ? props.width : 'w-full'} bg-gray-200 flex justify-center items-center`}>
         <p className="text-2xl font-bold text-Primary animate-pulse">Error</p>
       </div>
     )
