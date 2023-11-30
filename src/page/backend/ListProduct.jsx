@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from "react";
 import axiosClient from "../../API/ClientAxios";
 import { Link } from "react-router-dom";
