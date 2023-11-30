@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Logo from './Logo';
@@ -16,6 +17,7 @@ export default function Navbar() {
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
+  setIsDropdownOpen(!!event.target.value);
   };
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +32,7 @@ export default function Navbar() {
 
     fetchData();
   }, [searchQuery]);
+  
   const location = useLocation();
   const navigate = useNavigate();
   const [isTop, setIsTop] = useState(true);

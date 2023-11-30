@@ -4,8 +4,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axiosClient from "../../API/ClientAxios";
 import axios from "axios";
-// import { Player } from "../../components/common/Player";
+import { Player } from "../../components/common/Player";
 import { ItemMoview } from "../../components/common/ItemMovie";
+import { AiTwotoneStar } from 'react-icons/ai';
 // import { getMovieHomeDTO } from '../../data'
 
 export default function VideoPlayer() {
@@ -18,7 +19,9 @@ export default function VideoPlayer() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosClient.get(`http://streamapi.com:3000/videoplay?id=${id}`);
+        const response = await axiosClient.get(
+          `http://streamapi.com:3000/videoplay?id=${id}`,
+        );
         if (response.success) {
           setVideo(response.result);
         }
@@ -78,13 +81,11 @@ export default function VideoPlayer() {
   return (
     <div className="ml-8 grid grid-cols-3 gap-4 mt-4 ">
       <div className="col-span-2  ">
-        <div className="mt-4">
+        <div>
           <div className="relative">
             {video ? (
               <>
-                <video className="w-full h-96" controls>
-        <source src={video?.movieLink} type="video/mp4" />
-      </video>
+                <Player url={video.movieLink} height="400px"/>
                 <div className="flex mt-5 mb-3">
                   <input
                     type="number"
@@ -94,6 +95,7 @@ export default function VideoPlayer() {
                     onChange={(e) => setRating(parseInt(e.target.value))}
                     className="border p-2 rounded text-lineText dark:text-darkText bg-lineBlock dark:bg-darkBlock"
                   />
+                  <AiTwotoneStar className='text-24 mt-2 ml-1 text-yellow-500' />
                   <button
                     onClick={handleRate}
                     className="bg-red-500 hover:bg-red-400 ml-2 text-white font-bold py-0 px-4 rounded"
@@ -108,8 +110,9 @@ export default function VideoPlayer() {
                   </button>
                   <button
                     onClick={handleLike}
-                    className={`${isLiked ? "bg-blue-500" : "bg-gray-300"
-                      } hover:bg-blue-400 text-white font-bold py-0 px-5 rounded`}
+                    className={`${
+                      isLiked ? "bg-blue-500" : "bg-gray-300"
+                    } hover:bg-blue-400 text-white font-bold py-0 px-5 rounded`}
                   >
                     {isLiked ? "Liked" : "Like"}
                   </button>

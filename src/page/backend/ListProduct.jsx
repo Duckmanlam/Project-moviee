@@ -52,11 +52,14 @@ export default function ListProduct() {
       <h1 className="text-24 mb-6 text-left font-bold">
         Movie List
       </h1>
+      <div className="">
       <label htmlFor="search">Search: </label>
       <input
         type="text"
-        onChange={handleSearchChange}
+        onChange={handleSearchChange} 
+        className="my-4"
       />
+      </div>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right ">
           <thead className="text-xs uppercase bg-lineBlock dark:bg-darkBlock ">
