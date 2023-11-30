@@ -9,7 +9,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router>
       <div className="bg-white dark:bg-mainDark">
-        <RouteBackend/>
+        <RouteBackend />
         <RouteFontEnd />
       </div>
     </Router>
