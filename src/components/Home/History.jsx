@@ -73,7 +73,7 @@ export default function History(props) {
     return (
       <div className='flex gap-4'>
         {
-          [1, 2, 3, 4, 5,].map((item, index) => {
+          [1, 2, 3, 4, 5, 6].map((item, index) => {
             return (
               <div key={index} className='w-56 h-80'>
                 <Skeleton count={1} className='rounded-xl h-full overflow-hidden' />

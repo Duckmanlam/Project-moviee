@@ -8,8 +8,6 @@ export default function ListProduct() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
   const [notification, setNotification] = useState(null);
-
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -24,10 +22,8 @@ export default function ListProduct() {
         setNotification("Error deleting item. Please try again.");
       }
     };
-
     fetchData();
   }, []);
-
   // Delete
   const handleDeleteClick = async (id) => {
     try {
