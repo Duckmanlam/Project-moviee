@@ -6,7 +6,6 @@ import 'swiper/css';
 import 'tailwindcss/tailwind.css';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { BsFillPlayCircleFill } from 'react-icons/bs';
-import Skeleton from 'react-loading-skeleton'
 
 export default function History(props) {
   const [history, setHistory] = useState([]);
@@ -26,7 +25,6 @@ export default function History(props) {
     fetchData();
   }, []);
 
-  if (history.length > 0) {
     return (
       <Swiper
         spaceBetween={10}
@@ -69,19 +67,5 @@ export default function History(props) {
         ))}
       </Swiper>
     );
-  } else {
-    return (
-      <div className='flex gap-4'>
-        {
-          [1, 2, 3, 4, 5,].map((item, index) => {
-            return (
-              <div key={index} className='w-56 h-80'>
-                <Skeleton count={1} className='rounded-xl h-full overflow-hidden' />
-              </div>
-            )
-          })
-        }
-      </div>
-    )
-  }
+  
 }

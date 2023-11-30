@@ -7,11 +7,14 @@ export default function ListProduct() {
   const [movieData, setMovieData] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
-
+  const [searchQuery, setSearchQuery] = useState("");
+  const handleSearchChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosClient.get('list-model');
+        const response = await axiosClient.get(`list-model?searchQuery=${searchQuery}`);
         setMovieData(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -19,7 +22,7 @@ export default function ListProduct() {
     };
 
     fetchData();
-  }, []);
+  }, [searchQuery]);
 
 
   //Delete
@@ -49,6 +52,11 @@ export default function ListProduct() {
       <h1 className="text-24 mb-6 text-left font-bold">
         Movie List
       </h1>
+      <label htmlFor="search">Search: </label>
+      <input
+        type="text"
+        onChange={handleSearchChange}
+      />
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left rtl:text-right ">
           <thead className="text-xs uppercase bg-lineBlock dark:bg-darkBlock ">

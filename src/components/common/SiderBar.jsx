@@ -65,7 +65,7 @@ export const SiderBar = (props) => {
                   </svg>
                 </span>
                 <span className="ml-2 text-sm tracking-wide truncate">
-                  Creat Product
+                  Create Product
                 </span>
               </Link>
             </li>
