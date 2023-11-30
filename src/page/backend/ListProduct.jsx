@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import axiosClient from "../../API/ClientAxios";
 import { Link } from "react-router-dom";
@@ -8,6 +9,7 @@ export default function ListProduct() {
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage] = useState(5);
   const [searchQuery, setSearchQuery] = useState("");
+  const [notification, setNotification] = useState(null);
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
   };
@@ -28,15 +30,19 @@ export default function ListProduct() {
   //Delete
   const handleDeleteClick = async (id) => {
     try {
-      const confirmDelete = window.confirm("Bạn có chắn muốn xoá không?");
-
+      const confirmDelete = window.confirm("Are you sure you want to delete?");
+  
       if (confirmDelete) {
         await axiosClient.delete(`/list-model?id=${id}`);
-        const updatedData = await axiosClient.get(`/list-model`);
-        setMovieData(updatedData.data.data);
+        setMovieData((prevData) => prevData.filter(movie => movie.id !== id));
+        setTimeout(() => {
+           setNotification("Item deleted successfully!");
+        }, 2000);
+       
       }
     } catch (error) {
       console.error("Error deleting movie:", error);
+      setNotification("Error deleting item. Please try again.");
     }
   };
 
