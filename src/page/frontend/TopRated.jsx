@@ -1,29 +1,24 @@
 import "swiper/css";
 // import { useState } from "react";
 import { ItemMoview } from "../../components/common/ItemMovie";
-// import { useEffect } from "react";
-// import axiosClient from '../../API/ClientAxios'
+import { useEffect, useState } from "react";
+import axiosClient from '../../API/ClientAxios'
 const MovieList = () => {
-  // const [movieData, setMovieData] = useState([]);
-  // const [movieTop, setMovieTop] = useState([]);
-  // const [hoveredMovieId, setHoveredMovieId] = useState(false);
-  // const [searchQuery, setSearchQuery] = useState("");
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axiosClient.get('/top-rated');
+  const [news, setNews] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axiosClient.get("/top-rated");
+        if (response.success) {
+          setNews(response.result.getMovieHomeDTO);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-  //       if (response.success) {
-  //         setMovieData(response.result.getMovieHomeDTO);
-  //         setMovieTop(response.result.ratingDTOHome);
-  //       }
-  //     } catch (error) {
-  //       console.error("Error fetching data:", error);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
+    fetchData();
+  }, []);
 
   return (
     <div>
@@ -41,9 +36,9 @@ const MovieList = () => {
         </div>
         <div className="w-full h-full rounded-lg ml-8 ">
           <p className="mb-2 text-24 font-bold dark:text-Grayscale70">
-            Best of Action
+            New Film
           </p>
-          <ItemMoview/>
+          <ItemMoview data={news}/>
         </div>
       </div>
     </div>

@@ -1,13 +1,11 @@
-/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import History from "../../components/Home/History";
 import Banner from "../../components/Home/banNer";
 import { ItemMoview } from "../../components/common/ItemMovie";
 import axiosClient from "../../API/ClientAxios";
-import Skeleton from 'react-loading-skeleton'
 // import { Player } from "../../components/common/Player";
 export default function Homepage() {
-  const [toprated, setToprated] = useState([]);
+  // const [toprated, setToprated] = useState([]);
   const [bestaction, setBestAction] = useState([]);
   const [homepage, setHomepage] = useState([]);
   useEffect(() => {
@@ -15,7 +13,7 @@ export default function Homepage() {
       try {
         const response = await axiosClient.get('/home');
         if (response.success) {
-          setToprated(response.result.getMovieHomeDTO);
+          // setToprated(response.result.getMovieHomeDTO);
           setBestAction(response.result.ratingDTOHome);
           setHomepage(response.result.watchingHistoryHome)
         }
@@ -42,15 +40,15 @@ export default function Homepage() {
           </p>
           <History data={homepage}  />
         </div>
-        <div className="w-full h-full rounded-lg">
+        {/* <div className="w-full h-full rounded-lg">
           <p className="mb-4 text-24 font-bold border-b-4 border-Primary inline-block">
             Top Rated
           </p>
           <ItemMoview data={toprated} />
-        </div>
+        </div> */}
         <div className="w-full h-full rounded-lg">
           <p className="mb-4 text-24 font-bold border-b-4 border-Primary inline-block">
-            New Film
+            Best Of Action
           </p>
           <ItemMoview data={bestaction} />
         </div>
@@ -58,4 +56,3 @@ export default function Homepage() {
     </div>
   );
 }
-

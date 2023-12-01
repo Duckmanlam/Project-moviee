@@ -48,7 +48,7 @@ export default function VideoPlayer() {
   const handleLike = async () => {
     try {
       const response = await axios.get(
-        `http://streamapi.com:3000/videoplay/like?like=${!isLiked}&videoId=65646aef2884711f5ded092a`,
+        `http://streamapi.com:3000/videoplay/like?like=${!isLiked}&videoId=${id}`,
         {
           headers: {
             Authorization: `Bearer ${bearerToken}`,
@@ -68,7 +68,7 @@ export default function VideoPlayer() {
   const handleRate = async () => {
     try {
       const response = await axios.post(
-        `http://streamapi.com:3000/videoplay/rating?videoId=65647427e9fe42819b278cc0&rate=${rating}`,
+        `http://streamapi.com:3000/videoplay/rating?videoId=${id}&rate=${rating}`,
         null,
         {
           headers: {

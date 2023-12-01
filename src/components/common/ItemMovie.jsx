@@ -16,7 +16,7 @@ export const ItemMoview = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosClient.get('/top-rated');
+        const response = await axiosClient.get('/home');
 
         if (response.success) {
           setData(response.result.ratingDTOHome);
