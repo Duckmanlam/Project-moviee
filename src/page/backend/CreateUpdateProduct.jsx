@@ -97,7 +97,7 @@ function CreateUpdateProduct() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosClient.get(`list-model/addMovie/${id}`);
+        const response = await axiosClient.get(`detail-movie?id=${id}`);
         console.log(response)
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -155,7 +155,7 @@ function CreateUpdateProduct() {
               <div key={field} className="col-span-1">
                 <label htmlFor={field} className="block text-sm font-medium text-white/70 capitalize">{field}:</label>
                 <input
-                  id={field}
+                  id={ field}
                   type={field === 'releaseYear' ? 'date' : 'text'}
                   name={field}
                   value={data?.[field]}
