@@ -30,7 +30,7 @@ const Auth = () => {
     setLoading(true);
 
     try {
-      const response = await axiosClient.post(`http://streamapi.com:3000/auth/login`, {
+      const response = await axiosClient.post(`http://vanlanggo.com:3000/auth/login`, {
         email: auth.email,
         password: auth.password,
       });

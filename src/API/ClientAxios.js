@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-  baseURL: "http://streamapi.com:3000",
+  baseURL: "http://vanlanggo.com:3000",
   timeout: 30000,
   headers: {
     "content-type": "application/json",

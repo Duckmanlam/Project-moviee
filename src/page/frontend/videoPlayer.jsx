@@ -22,7 +22,7 @@ export default function VideoPlayer() {
     const fetchData = async () => {
       try {
         const response = await axiosClient.get(
-          `http://streamapi.com:3000/videoplay?id=${id}`,
+          `http://vanlanggo.com:3000/videoplay?id=${id}`,
         );
         if (response.success) {
           setVideo(response.result);
@@ -48,7 +48,7 @@ export default function VideoPlayer() {
   const handleLike = async () => {
     try {
       const response = await axios.get(
-        `http://streamapi.com:3000/videoplay/like?like=${!isLiked}&videoId=${id}`,
+        `http://vanlanggo.com:3000/videoplay/like?like=${!isLiked}&videoId=${id}`,
         {
           headers: {
             Authorization: `Bearer ${bearerToken}`,
@@ -68,7 +68,7 @@ export default function VideoPlayer() {
   const handleRate = async () => {
     try {
       const response = await axios.post(
-        `http://streamapi.com:3000/videoplay/rating?videoId=${id}&rate=${rating}`,
+        `http://vanlanggo.com:3000/videoplay/rating?videoId=${id}&rate=${rating}`,
         null,
         {
           headers: {
@@ -120,9 +120,8 @@ export default function VideoPlayer() {
                   </button>
                   <button
                     onClick={handleLike}
-                    className={`${
-                      isLiked ? "bg-blue-500" : "bg-gray-500"
-                    } hover:bg-blue-400 text-white font-bold py-0 px-5 rounded`}
+                    className={`${isLiked ? "bg-blue-500" : "bg-gray-500"
+                      } hover:bg-blue-400 text-white font-bold py-0 px-5 rounded`}
                   >
                     {isLiked ? "Liked" : "Like"}
                   </button>
