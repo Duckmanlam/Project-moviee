@@ -110,6 +110,7 @@ function CreateUpdateProduct() {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        
         const response = await axiosClient.put(`list-model/updateMovie/${id}`);
         setData(response.data); // Update state with fetched data
       } catch (error) {

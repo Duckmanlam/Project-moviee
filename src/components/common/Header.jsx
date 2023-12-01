@@ -171,11 +171,10 @@ export default function Navbar() {
           >
             <img
               className="w-8 h-8 rounded-full"
-              src="https://haycafe.vn/wp-content/uploads/2022/02/Anh-gai-xinh-Viet-Nam.jpg"
+              src="https://drive.google.com/drive/folders/1eZnA-3ma7B2MvRvCxLgEt6XT2EKd7LZ8"
               alt="user photo"
             />
           </button>
-
           {/* Dropdown menu */}
           <div
             className={`z-50 my-4 text-base list-none divide-y divide-gray-100 rounded-lg shadow dark:shadow-none bg-lineBlock dark:bg-darkBlock dark:divide-gray-600 absolute right-0 ${isDropdownOpen ? "block" : "hidden"
