@@ -76,7 +76,7 @@ function CreateUpdateProduct() {
 
     try {
       const response = await axios.post(
-        "http://streamapi.com:3000/list-model/addMovie",
+        "/list-model/addMovie",
         formData,
         {
           headers: {

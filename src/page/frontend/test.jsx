@@ -29,7 +29,7 @@ const Test = () => {
       });
 
       // Gửi yêu cầu POST sử dụng axios
-      const response = await axios.post('https://streamapi.com:3000/list-model/upload', formData, {
+      const response = await axios.post('/list-model/upload', formData, {
         withCredentials: true,
         headers: {
           'Content-Type': 'multipart/form-data',

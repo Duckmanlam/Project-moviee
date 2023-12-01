@@ -31,7 +31,7 @@ const Auth = () => {
 
     try {
       const response = await axiosClient.post(
-        `http://streamapi.com:3000/auth/login`,
+        `/auth/login`,
         {
           email: auth.email,
           password: auth.password,
