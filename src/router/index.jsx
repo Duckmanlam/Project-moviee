@@ -43,7 +43,7 @@ export default function Router() {
         <Route path="/video" element={<VideoPlayer />} />
         <Route path="/product" element={<ListProduct />} />
         <Route path="/product/create" element={<CreateUpdateProduct />} />
-        <Route path="/product/update/:id" element={<CreateUpdateProduct />} />
+        <Route path="/product/update/:id" element={<CreateUpdateProduct/>} />
         <Route path="*" element={<NotFound />} />
       </Route>
       <Route element={<IndexLayout />}>

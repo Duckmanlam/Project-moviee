@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/rules-of-hooks */
 import TopMovies from "../../components/Home/topMovies";
 import { useParams, useNavigate } from "react-router-dom";
@@ -6,13 +7,14 @@ import axiosClient from "../../API/ClientAxios";
 import axios from "axios";
 import { Player } from "../../components/common/Player";
 import { ItemMoview } from "../../components/common/ItemMovie";
-import { AiTwotoneStar } from 'react-icons/ai';
+import { AiTwotoneStar } from "react-icons/ai";
 // import { getMovieHomeDTO } from '../../data'
 
 export default function VideoPlayer() {
   const { id } = useParams();
   const [video, setVideo] = useState({});
   const navigate = useNavigate();
+  const [successMessage, setSuccessMessage] = useState(null);
 
   if (!id) return navigate("/");
 
@@ -61,6 +63,8 @@ export default function VideoPlayer() {
       console.error("Error during like:", error.response?.data);
     }
   };
+
+  //Rating
   const handleRate = async () => {
     try {
       const response = await axios.post(
@@ -72,12 +76,17 @@ export default function VideoPlayer() {
           },
         },
       );
-
       console.log(response.data);
+      setTimeout(() => {
+        setSuccessMessage("Rating success!");
+      }, 2000);
+      setSuccessMessage(null);
     } catch (error) {
       console.error("Error during rating:", error.response?.data);
+      setSuccessMessage("Error during rating.");
     }
   };
+
   return (
     <div className="ml-8 grid grid-cols-3 gap-4 mt-4 ">
       <div className="col-span-2  ">
@@ -85,7 +94,7 @@ export default function VideoPlayer() {
           <div className="relative">
             {video ? (
               <>
-                <Player url={video.movieLink} height="400px"/>
+                <Player url={video.movieLink} height="400px" />
                 <div className="flex mt-5 mb-3">
                   <input
                     type="number"
@@ -95,23 +104,24 @@ export default function VideoPlayer() {
                     onChange={(e) => setRating(parseInt(e.target.value))}
                     className="border p-2 rounded text-lineText dark:text-darkText bg-lineBlock dark:bg-darkBlock"
                   />
-                  <AiTwotoneStar className='text-24 mt-2 ml-1 text-yellow-500' />
+                  <AiTwotoneStar className="text-24 mt-2 ml-1 text-yellow-500" />
                   <button
                     onClick={handleRate}
-                    className="bg-red-500 hover:bg-red-400 ml-2 text-white font-bold py-0 px-4 rounded"
+                    className="bg-violet-500 hover:bg-violet-300 ml-2 text-white font-bold py-0 px-4 rounded"
                   >
                     Rate
                   </button>
+
                   <button
                     onClick={handleShare}
-                    className="ml-auto bg-orange-400 hover:bg-orange-300 text-white font-bold py-0 px-5 rounded mr-2"
+                    className="ml-auto bg-violet-500 hover:bg-violet-300 text-white font-bold py-0 px-5 rounded mr-2"
                   >
                     Share
                   </button>
                   <button
                     onClick={handleLike}
                     className={`${
-                      isLiked ? "bg-blue-500" : "bg-gray-300"
+                      isLiked ? "bg-blue-500" : "bg-gray-500"
                     } hover:bg-blue-400 text-white font-bold py-0 px-5 rounded`}
                   >
                     {isLiked ? "Liked" : "Like"}
@@ -123,6 +133,11 @@ export default function VideoPlayer() {
               </>
             ) : (
               <div>Lỗi video</div>
+            )}
+            {successMessage && (
+              <div className="fixed top-14 right-4 bg-green-500 text-white p-2 rounded">
+                {successMessage}
+              </div>
             )}
             <div>
               <p className="text-black text-16 mt-4 drop-shadow-xl dark:text-white">

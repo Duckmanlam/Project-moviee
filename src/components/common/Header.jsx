@@ -3,7 +3,6 @@ import { useEffect, useState, useRef } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import Logo from './Logo';
 import { BiSun, BiMoon } from "react-icons/bi";
-import { searchData } from '../../data'
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { AiTwotoneStar } from "react-icons/ai";
 import axiosClient from "../../API/ClientAxios";
@@ -12,18 +11,17 @@ import axiosClient from "../../API/ClientAxios";
 export default function Navbar() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
-  const [dataSearch, setDataSearch] = useState(searchData.splice(0, 4));
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
-  setIsDropdownOpen(!!event.target.value);
-  };
+    setIsDropdownOpen(!!event.target.value);
+  };  
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axiosClient.get(`list-model?searchQuery=${searchQuery}`);
-        setDataSearch(response.data);
+        setSearch(response.data);
         console.log(response.data);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -141,20 +139,17 @@ export default function Navbar() {
               </svg>
             </button>
           </div>
-          {dataSearch.length? <div className="absolute top-full mt-2 h-auto rounded-lg overflow-hidden grid grid-cols-1 divide-y divide-dashed divide-black/10 dark:divide-white/10 w-full bg-lineBlock dark:bg-darkBlock">
-            {dataSearch.map(item => {
+          {searchQuery.length ? <div className="absolute top-full mt-2 h-auto rounded-lg overflow-hidden grid grid-cols-1 divide-y divide-dashed divide-black/10 dark:divide-white/10 w-full bg-lineBlock dark:bg-darkBlock">
+            {search.map(item => {
               return <Link key={item.id} to={`/video/${item.id}`} className="p-2 flex gap-4">
-                
                 <LazyLoadImage
                   loading='lazy'
-                  className='w-20 h-32 rounded'
+                  className='w-20 h-32 rounded object-cover'
                   alt={item?.title}
                   src={item?.posterImage}
                 />
                 <div className="py-4 text-sm flex flex-col gap-1">
                   <p className="line-clamp-2">{item?.title}</p>
-                  <p className="flex items-center gap-2"> {item?.averageRating} <AiTwotoneStar className='text-sm text-yellow-500' /></p>
-                  <span className='inline-block text-sm text-white/70 border border-light-gray px-1 py-[2px] rounded ml-auto line-clamp-1 truncate max-w-[8rem]'> {item?.genre.map((genre) => genre.name).join(", ")}</span>
                 </div>
               </Link>
             })}

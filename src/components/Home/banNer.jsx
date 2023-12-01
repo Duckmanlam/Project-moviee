@@ -38,7 +38,7 @@ export default function Banner() {
   return (
     <div className="relative w-full max-h-[35rem] h-full overflow-hidden rounded">
       {loading ? (
-        <p>Loading...</p>
+        <p>Loading video...</p>
       ) : (
         <Swiper
           pagination={{ clickable: true }}
@@ -66,6 +66,7 @@ export default function Banner() {
                   zIndex: "50",
                 }}
               >
+
                 <p className="text-white text-32 font-black drop-shadow-xl">
                   {banner[randomIndex]?.title}
                 </p>

@@ -1,8 +1,10 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useState } from "react";
 import History from "../../components/Home/History";
 import Banner from "../../components/Home/banNer";
 import { ItemMoview } from "../../components/common/ItemMovie";
 import axiosClient from "../../API/ClientAxios";
+import Skeleton from 'react-loading-skeleton'
 // import { Player } from "../../components/common/Player";
 export default function Homepage() {
   const [toprated, setToprated] = useState([]);
@@ -48,7 +50,7 @@ export default function Homepage() {
         </div>
         <div className="w-full h-full rounded-lg">
           <p className="mb-4 text-24 font-bold border-b-4 border-Primary inline-block">
-            Best of Action
+            New Film
           </p>
           <ItemMoview data={bestaction} />
         </div>
@@ -56,3 +58,4 @@ export default function Homepage() {
     </div>
   );
 }
+
