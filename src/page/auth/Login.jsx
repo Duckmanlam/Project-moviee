@@ -1,11 +1,11 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axiosClient from '../../API/ClientAxios';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import axiosClient from "../../API/ClientAxios";
 
 const Auth = () => {
   const [auth, setAuth] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
     showPassword: false,
   });
   const [loading, setLoading] = useState(false);
@@ -20,7 +20,7 @@ const Auth = () => {
   };
 
   const handleEnterPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleSubmit(e);
     }
   };
@@ -30,18 +30,21 @@ const Auth = () => {
     setLoading(true);
 
     try {
-      const response = await axiosClient.post(`http://streamapi.com:3000/auth/login`, {
-        email: auth.email,
-        password: auth.password,
-      });
+      const response = await axiosClient.post(
+        `/auth/login`,
+        {
+          email: auth.email,
+          password: auth.password,
+        },
+      );
       if (response.result.access_token) {
-        localStorage.setItem('accessToken', response.result.access_token);
-        localStorage.setItem('role', response.result.roleId);
+        localStorage.setItem("accessToken", response.result.access_token);
+        localStorage.setItem("role", response.result.roleId);
         console.log(response.result.access_token);
-        navigate('/');
+        navigate("/");
       }
     } catch (error) {
-      console.error('Error during login:', error);
+      console.error("Error during login:", error);
     } finally {
       setLoading(false);
     }
@@ -51,17 +54,13 @@ const Auth = () => {
     <div className="relative h-full w-full bg-bgImage bg-no-repeat bg-center bg-fixed bg-cover">
       <div className="bg-black w-full h-full lg:bg-opacity-50">
         <nav className="px-12 py-5">
-          <div
-            className="self-center text-2xl font-semibold whitespace-nowrap text-white"
-          >
+          <div className="self-center text-2xl font-semibold whitespace-nowrap text-white">
             Cinemax
           </div>
         </nav>
         <div className="flex justify-center">
           <div className="bg-black bg-opacity-70 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
-            <h2 className="text-white text-4xl mb-8 font-semibold">
-              Sign in
-            </h2>
+            <h2 className="text-white text-4xl mb-8 font-semibold">Sign in</h2>
             <div className="flex flex-col gap-4">
               <input
                 className="w-full px-3 py-3 rounded-md bg-[#333333] text-white"
@@ -71,7 +70,6 @@ const Auth = () => {
                 placeholder="Email hoặc số điện thoại"
                 value={auth.email}
                 onChange={handleChange}
-
               />
               <div className="relative">
                 <input
@@ -86,24 +84,29 @@ const Auth = () => {
                 />
                 <span
                   className="absolute top-3 right-3 cursor-pointer text-[#5F5C51]"
-                  onClick={() => setAuth({ ...auth, showPassword: !auth.showPassword })}
+                  onClick={() =>
+                    setAuth({ ...auth, showPassword: !auth.showPassword })
+                  }
                 >
                   {auth.showPassword ? "Hide" : "Show"}
                 </span>
               </div>
-
             </div>
             <button
-              className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition" onClick={handleSubmit} disabled={loading} // Disable the button when loading
+              className="bg-red-600 py-3 text-white rounded-md w-full mt-10 hover:bg-red-700 transition"
+              onClick={handleSubmit}
+              disabled={loading} // Disable the button when loading
             >
               Login
             </button>
-            <p className="text-neutral-500 mt-12">
-              First time using me?
-              <span className="text-white ml-1 hover:underline cursor-pointer">
-                Create an account
-              </span>
-            </p>
+            <Link to="/register">
+              <p className="text-neutral-500 mt-12">
+                First time using me?
+                <span className="text-white ml-1 hover:underline cursor-pointer">
+                  Create an account
+                </span>
+              </p>
+            </Link>
           </div>
         </div>
       </div>

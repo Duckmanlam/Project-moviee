@@ -4,7 +4,7 @@ import ReactPlayer from "react-player";
 
 export default function MoreInfo() {
   const [detail, setDetail] = useState({});
-  const movieApiUrl = "http://streamapi.com:3000/detail-movie?id=656170e3c44dbd18639e0624";
+  const movieApiUrl = "/detail-movie?id=656170e3c44dbd18639e0624";
 
   useEffect(() => {
     const fetchData = async () => {

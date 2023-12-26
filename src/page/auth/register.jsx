@@ -22,7 +22,7 @@ export default function Register() {
 
   const handleRegister = async () => {
     try {
-      const registerUrl = 'http://streamapi.com:3000/auth/register';
+      const registerUrl = '/auth/register';
 
       const response = await fetch(registerUrl, {
         method: 'POST',

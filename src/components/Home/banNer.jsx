@@ -3,8 +3,8 @@ import { useState, useEffect } from "react";
 import axiosClient from "../../API/ClientAxios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
-import { Link } from "react-feather";
-
+import { Player } from "../common/Player";
+import { Link } from "react-router-dom";
 export default function Banner() {
   const [banner, setBanner] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -38,7 +38,7 @@ export default function Banner() {
   return (
     <div className="relative w-full max-h-[35rem] h-full overflow-hidden rounded">
       {loading ? (
-        <p>Loading...</p>
+        <p>Loading video...</p>
       ) : (
         <Swiper
           pagination={{ clickable: true }}
@@ -50,15 +50,13 @@ export default function Banner() {
             <div
               style={{ position: "relative", width: "100%", height: "96vh" }}
             >
-              <video
+              <Link to={`/video/${banner?.id}`}>
+              <Player
+                url={banner[randomIndex]?.movieUrl}
                 className="w-full h-full"
-                controls
                 width="100%"
                 height="100%"
-                muted={false}
-              >
-                <source src={banner[randomIndex]?.movieUrl} type="video/mp4" />
-              </video>
+              />
               <div
                 style={{
                   position: "absolute",
@@ -68,23 +66,22 @@ export default function Banner() {
                   zIndex: "50",
                 }}
               >
-                <p className="text-orange-900 text-32 font-black drop-shadow-xl">
+
+                <p className="text-white text-32 font-black drop-shadow-xl">
                   {banner[randomIndex]?.title}
                 </p>
-                <p className="text-orange-900 text-18 mt-4 font-black drop-shadow-xl w-3/4">
+                <p className="text-white text-18 mt-4 font-black drop-shadow-xl w-3/4">
                   {banner[randomIndex]?.content}
                 </p>
                 <div className="flex flex-row items-center mt-3 md:mt-4 gap-3">
-                  <Link
-                    to={`/video/${banner?.id}`}
-                    className="py-1 flex items-center space-x-4 rounded-md group"
-                  >
+                  <Link to={`/video/${banner?.id}`}>
                     <button className="bg-red-500 px-6 py-2 rounded-md text-white text-lg font-semibold hover:bg-red-600 transition-colors">
                       Watch Now
                     </button>
                   </Link>
                 </div>
               </div>
+              </Link>
             </div>
           </SwiperSlide>
         </Swiper>

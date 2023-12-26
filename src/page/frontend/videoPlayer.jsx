@@ -1,24 +1,29 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/rules-of-hooks */
 import TopMovies from "../../components/Home/topMovies";
 import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axiosClient from "../../API/ClientAxios";
 import axios from "axios";
-// import { Player } from "../../components/common/Player";
+import { Player } from "../../components/common/Player";
 import { ItemMoview } from "../../components/common/ItemMovie";
+import { AiTwotoneStar } from "react-icons/ai";
 // import { getMovieHomeDTO } from '../../data'
 
 export default function VideoPlayer() {
   const { id } = useParams();
   const [video, setVideo] = useState({});
   const navigate = useNavigate();
+  const [successMessage, setSuccessMessage] = useState(null);
 
   if (!id) return navigate("/");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axiosClient.get(`http://streamapi.com:3000/videoplay?id=${id}`);
+        const response = await axiosClient.get(
+          `/videoplay?id=${id}`,
+        );
         if (response.success) {
           setVideo(response.result);
         }
@@ -43,7 +48,7 @@ export default function VideoPlayer() {
   const handleLike = async () => {
     try {
       const response = await axios.get(
-        `http://streamapi.com:3000/videoplay/like?like=${!isLiked}&videoId=65646aef2884711f5ded092a`,
+        `/videoplay/like?like=${!isLiked}&videoId=${id}`,
         {
           headers: {
             Authorization: `Bearer ${bearerToken}`,
@@ -58,10 +63,12 @@ export default function VideoPlayer() {
       console.error("Error during like:", error.response?.data);
     }
   };
+
+  //Rating
   const handleRate = async () => {
     try {
       const response = await axios.post(
-        `http://streamapi.com:3000/videoplay/rating?videoId=65647427e9fe42819b278cc0&rate=${rating}`,
+        `/videoplay/rating?videoId=${id}&rate=${rating}`,
         null,
         {
           headers: {
@@ -69,22 +76,25 @@ export default function VideoPlayer() {
           },
         },
       );
-
       console.log(response.data);
+      setTimeout(() => {
+        setSuccessMessage("Rating success!");
+      }, 2000);
+      setSuccessMessage(null);
     } catch (error) {
       console.error("Error during rating:", error.response?.data);
+      setSuccessMessage("Error during rating.");
     }
   };
+
   return (
     <div className="ml-8 grid grid-cols-3 gap-4 mt-4 ">
       <div className="col-span-2  ">
-        <div className="mt-4">
+        <div>
           <div className="relative">
             {video ? (
               <>
-                <video className="w-full h-96" controls>
-        <source src={video?.movieLink} type="video/mp4" />
-      </video>
+                <Player url={video.movieLink} height="400px" />
                 <div className="flex mt-5 mb-3">
                   <input
                     type="number"
@@ -94,22 +104,25 @@ export default function VideoPlayer() {
                     onChange={(e) => setRating(parseInt(e.target.value))}
                     className="border p-2 rounded text-lineText dark:text-darkText bg-lineBlock dark:bg-darkBlock"
                   />
+                  <AiTwotoneStar className="text-24 mt-2 ml-1 text-yellow-500" />
                   <button
                     onClick={handleRate}
-                    className="bg-red-500 hover:bg-red-400 ml-2 text-white font-bold py-0 px-4 rounded"
+                    className="bg-violet-500 hover:bg-violet-300 ml-2 text-white font-bold py-0 px-4 rounded"
                   >
                     Rate
                   </button>
+
                   <button
                     onClick={handleShare}
-                    className="ml-auto bg-orange-400 hover:bg-orange-300 text-white font-bold py-0 px-5 rounded mr-2"
+                    className="ml-auto bg-violet-500 hover:bg-violet-300 text-white font-bold py-0 px-5 rounded mr-2"
                   >
                     Share
                   </button>
                   <button
                     onClick={handleLike}
-                    className={`${isLiked ? "bg-blue-500" : "bg-gray-300"
-                      } hover:bg-blue-400 text-white font-bold py-0 px-5 rounded`}
+                    className={`${
+                      isLiked ? "bg-blue-500" : "bg-gray-500"
+                    } hover:bg-blue-400 text-white font-bold py-0 px-5 rounded`}
                   >
                     {isLiked ? "Liked" : "Like"}
                   </button>
@@ -120,6 +133,11 @@ export default function VideoPlayer() {
               </>
             ) : (
               <div>Lỗi video</div>
+            )}
+            {successMessage && (
+              <div className="fixed top-14 right-4 bg-green-500 text-white p-2 rounded">
+                {successMessage}
+              </div>
             )}
             <div>
               <p className="text-black text-16 mt-4 drop-shadow-xl dark:text-white">

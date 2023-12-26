@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 
 export const SiderBar = (props) => {
   return (
-    <div className="h-screen flex flex-col top-0 left-0 w-56">
+    <div className="h-screen flex flex-col mt-5 left-0 w-56">
       <div className="fixed bg-lineBlock dark:bg-darkBlock shadow dark:shadow-none rounded-r-2xl w-56">
         <div className="flex items-center justify-center h-14 border-b">
           <div className="text-Primary text-lg font-bold">Dashboard</div>

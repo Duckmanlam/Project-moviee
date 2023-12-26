@@ -6,31 +6,18 @@ import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
 import { Swiper, SwiperSlide } from "swiper/react";
-import { useState, useEffect } from 'react';
-import axiosClient from '../../API/ClientAxios';
+// import { useState, useEffect } from 'react';
+// import axiosClient from '../../API/ClientAxios';
 
 export const ItemMoview = (props) => {
-  const [data, setData] = useState([]);
   // const [hoveredMovieId, setHoveredMovieId] = useState(false);
   // const [searchQuery, setSearchQuery] = useState("");
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axiosClient.get('/top-rated');
-
-        if (response.success) {
-          setData(response.result.ratingDTOHome);
-        }
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
+  
 
 
-  if (data.length > 0) {
+
+
+  if (length > 0) {
     return (
       <Swiper
         spaceBetween={10}
@@ -48,7 +35,7 @@ export const ItemMoview = (props) => {
           },
         }}
       >
-        {data?.map((movie) => (
+        {props.data?.map((movie) => (
           <SwiperSlide key={movie.id}>
             <div className="group card transition-transform duration-300 overflow-hidden rounded-xl aspect-w-2 aspect-h-3 w-full h-80">
               <Link to={`/video/${movie?.id}`} className='w-full h-full relative block'>
@@ -80,7 +67,7 @@ export const ItemMoview = (props) => {
     return (
       <div className='flex gap-4'>
         {
-          [1, 2, 3, 4, 5,].map((item, index) => {
+          [1, 2, 3, 4, 5,6].map((item, index) => {
             return (
               <div key={index} className='w-56 h-80'>
                 <Skeleton count={1} className='rounded-xl h-full overflow-hidden' />
