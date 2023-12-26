@@ -12,7 +12,7 @@ export default function Navbar() {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const [dataSearch, setDataSearch] = useState(searchData.splice(0, 4));
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState("tests");
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -138,9 +138,9 @@ export default function Navbar() {
               </svg>
             </button>
           </div>
-          {dataSearch.length? <div className="absolute top-full mt-2 h-auto rounded-lg overflow-hidden grid grid-cols-1 divide-y divide-dashed divide-black/10 dark:divide-white/10 w-full bg-lineBlock dark:bg-darkBlock">
+          {dataSearch.length?  <div className="absolute top-full mt-2 h-auto rounded-lg overflow-hidden grid grid-cols-1 divide-y divide-dashed divide-black/10 dark:divide-white/10 w-full bg-lineBlock dark:bg-darkBlock">
             {dataSearch.map(item => {
-              return <Link key={item.id} to={`/video/${item.id}`} className="p-2 flex gap-4">
+              return <Link key={item.id} to={`/video/${item}`} className="p-2 flex gap-4">
                 
                 <LazyLoadImage
                   loading='lazy'
